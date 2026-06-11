@@ -1,0 +1,116 @@
+---
+import "../styles/global.css";
+import { ClientRouter } from "astro:transitions";
+import Header from "../components/layout/Header.astro";
+import Footer from "../components/layout/Footer.astro";
+import BackgroundEffects from "../components/layout/BackgroundEffects.astro";
+import ThemeInit from "../components/ui/ThemeInit.astro";
+import AllAds from "../components/ads/AllAds.astro";
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Free Downloads — Lootpaper</title>
+    <meta name="description" content="Free SEO checklists, marketing tool directories, and growth guides. Complete one quick offer to unlock each download." />
+    <meta property="og:title" content="Free Downloads — Lootpaper" />
+    <meta property="og:description" content="Free SEO checklists, marketing resources, and growth guides." />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <ThemeInit />
+    <ClientRouter />
+  </head>
+  <body class="bg-background text-foreground">
+    <BackgroundEffects />
+    <Header currentPath={Astro.url.pathname} />
+
+    <section class="py-20 text-center">
+      <div class="container">
+        <span class="inline-flex h-7 items-center rounded-full border border-primary/20 bg-primary/8 px-3.5 text-xs font-medium text-primary mb-6">Free Downloads</span>
+        <h1 class="text-4xl lg:text-5xl font-bold tracking-tight mb-3">Premium <span class="gradient-text">Resources</span></h1>
+        <p class="text-muted-foreground max-w-lg mx-auto text-lg">Handcrafted PDFs to help you rank higher, save time, and grow faster. Complete one quick offer to unlock each download.</p>
+      </div>
+    </section>
+
+    <section class="pb-20">
+      <div class="container max-w-4xl">
+        <div class="grid gap-8">
+
+          <!-- Card 1 - SEO Checklist -->
+          <div class="rounded-xl border border-border bg-card p-8 card-hover glow-border">
+            <div class="flex flex-col sm:flex-row gap-6 items-start">
+              <div class="size-20 shrink-0 rounded-xl bg-gradient-to-br from-primary/20 to-primary/5 flex items-center justify-center">
+                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="text-primary"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/><line x1="16" x2="8" y1="13" y2="13"/><line x1="16" x2="8" y1="17" y2="17"/></svg>
+              </div>
+              <div class="flex-1 min-w-0">
+                <div class="flex items-center gap-3 mb-2">
+                  <h2 class="text-xl font-bold tracking-tight">SEO Quick Checklist 2026</h2>
+                  <span class="inline-flex h-5 items-center rounded-full bg-green-500/15 text-green-500 px-2.5 text-[10px] font-semibold">PDF</span>
+                </div>
+                <p class="text-sm text-muted-foreground mb-1">30 actionable points covering technical SEO, on-page, content, AI search optimization, and off-page. Print it, check them off.</p>
+                <p class="text-xs text-muted-foreground/60 mb-4">3 KB &middot; 1 page &middot; Updated 2026</p>
+                <a href="https://quartzfiles.com/1899872" target="_blank" rel="nofollow sponsored" class="btn-primary text-sm h-10 px-5 inline-flex items-center gap-2">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg>
+                  Unlock & Download
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 2 - Marketing Tools -->
+          <div class="rounded-xl border border-border bg-card p-8 card-hover glow-border">
+            <div class="flex flex-col sm:flex-row gap-6 items-start">
+              <div class="size-20 shrink-0 rounded-xl bg-gradient-to-br from-primary/20 to-primary/5 flex items-center justify-center">
+                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="text-primary"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg>
+              </div>
+              <div class="flex-1 min-w-0">
+                <div class="flex items-center gap-3 mb-2">
+                  <h2 class="text-xl font-bold tracking-tight">100 Free Marketing Tools</h2>
+                  <span class="inline-flex h-5 items-center rounded-full bg-green-500/15 text-green-500 px-2.5 text-[10px] font-semibold">PDF</span>
+                </div>
+                <p class="text-sm text-muted-foreground mb-1">Curated directory of free tools across SEO, content, design, email, analytics, AI, and more. Every tool has a real free tier.</p>
+                <p class="text-xs text-muted-foreground/60 mb-4">4 KB &middot; 2 pages &middot; Updated 2026</p>
+                <a href="https://tundrafile.com/1899875" target="_blank" rel="nofollow sponsored" class="btn-primary text-sm h-10 px-5 inline-flex items-center gap-2">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg>
+                  Unlock & Download
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 3 - Growth Guide -->
+          <div class="rounded-xl border border-border bg-card p-8 card-hover glow-border">
+            <div class="flex flex-col sm:flex-row gap-6 items-start">
+              <div class="size-20 shrink-0 rounded-xl bg-gradient-to-br from-primary/20 to-primary/5 flex items-center justify-center">
+                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="text-primary"><line x1="12" x2="12" y1="20" y2="10"/><line x1="18" x2="18" y1="20" y2="4"/><line x1="6" x2="6" y1="20" y2="16"/></svg>
+              </div>
+              <div class="flex-1 min-w-0">
+                <div class="flex items-center gap-3 mb-2">
+                  <h2 class="text-xl font-bold tracking-tight">Indie Hacker Growth Guide</h2>
+                  <span class="inline-flex h-5 items-center rounded-full bg-green-500/15 text-green-500 px-2.5 text-[10px] font-semibold">PDF</span>
+                </div>
+                <p class="text-sm text-muted-foreground mb-1">5 actionable growth strategies for makers and indie hackers. SEO, building in public, content repurposing, communities, and email.</p>
+                <p class="text-xs text-muted-foreground/60 mb-4">2 KB &middot; 2 pages &middot; Updated 2026</p>
+                <a href="https://filestrue.com/1899879" target="_blank" rel="nofollow sponsored" class="btn-primary text-sm h-10 px-5 inline-flex items-center gap-2">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg>
+                  Unlock & Download
+                </a>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="mt-12 text-center">
+          <div class="inline-flex items-center gap-2 rounded-full border border-border bg-muted/50 px-5 py-2.5 text-sm text-muted-foreground">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-primary"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            Your privacy is protected. No spam, no tracking after unlock.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <Footer />
+  </body>
+</html>

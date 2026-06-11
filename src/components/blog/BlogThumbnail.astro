@@ -1,0 +1,105 @@
+---
+interface Props {
+  title: string;
+  class?: string;
+  size?: "sm" | "lg";
+}
+
+const { title, class: className, size = "sm" } = Astro.props;
+
+function splitTitle(title: string, maxLen: number): string[] {
+  const words = title.split(" ");
+  const lines: string[] = [];
+  let current = "";
+  for (const word of words) {
+    if ((current + " " + word).trim().length <= maxLen) {
+      current += (current ? " " : "") + word;
+    } else {
+      if (current) lines.push(current.trim());
+      current = word;
+    }
+  }
+  if (current) lines.push(current.trim());
+  return lines.length > 3 ? lines.slice(0, 3) : lines;
+}
+
+const seed = [...title].reduce((a, c) => a + c.charCodeAt(0), 0);
+const hue1 = (seed * 7) % 360;
+const hue2 = (hue1 + 30) % 360;
+const hue3 = (hue2 + 20) % 360;
+
+const sizes = {
+  sm: { w: 600, h: 280 },
+  lg: { w: 1200, h: 520 },
+};
+
+const { w, h } = sizes[size];
+const titleLines = splitTitle(title, size === "lg" ? 70 : 50);
+---
+
+<svg
+  class={className}
+  width={w}
+  height={h}
+  viewBox={`0 0 ${w} ${h}`}
+  fill="none"
+  xmlns="http://www.w3.org/2000/svg"
+  role="img"
+  aria-label={`Blog post: ${title}`}
+>
+  <defs>
+    <linearGradient id={`bg-${seed}`} x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color={`hsl(${hue1}, 35%, 22%)`} />
+      <stop offset="50%" stop-color={`hsl(${hue2}, 40%, 18%)`} />
+      <stop offset="100%" stop-color={`hsl(${hue3}, 35%, 15%)`} />
+    </linearGradient>
+    <linearGradient id={`accent-${seed}`} x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color={`hsl(${hue1}, 60%, 55%)`} />
+      <stop offset="50%" stop-color={`hsl(${hue2}, 55%, 50%)`} />
+      <stop offset="100%" stop-color={`hsl(${hue3}, 50%, 45%)`} />
+    </linearGradient>
+  </defs>
+  <rect width={w} height={h} rx="12" fill={`url(#bg-${seed})`} />
+  <circle cx={w * 0.88} cy={h * 0.12} r={w * 0.28} fill={`url(#accent-${seed})`} opacity="0.15" />
+  <circle cx={w * 0.15} cy={h * 0.85} r={w * 0.18} fill={`url(#accent-${seed})`} opacity="0.1" />
+  <circle cx={w * 0.7} cy={h * 0.7} r={w * 0.12} fill={`url(#accent-${seed})`} opacity="0.08" />
+  <rect x={w * 0.04} y={h * 0.08} width={w * 0.35} height="3" rx="1.5" fill={`url(#accent-${seed})`} opacity="0.5" />
+  <g opacity="0.08">
+    {Array.from({ length: size === "lg" ? 8 : 5 }).map((_, i) => (
+      <rect
+        key={i}
+        x={w * (0.7 + Math.random() * 0.25)}
+        y={h * (0.1 + Math.random() * 0.8)}
+        width={w * (0.02 + Math.random() * 0.04)}
+        height={h * (0.01 + Math.random() * 0.02)}
+        rx="1"
+        fill="white"
+        opacity={0.3 + Math.random() * 0.4}
+      />
+    ))}
+  </g>
+  <text
+    x={w * 0.05}
+    y={h * 0.5}
+    fill="rgba(255,255,255,0.95)"
+    font-family="system-ui, sans-serif"
+    font-size={size === "lg" ? h * 0.07 : h * 0.085}
+    font-weight="700"
+    letter-spacing="-0.01em"
+  >
+    {titleLines.map((line, i) => (
+      <tspan key={i} x={w * 0.05} dy={i === 0 ? 0 : h * 0.1}>{line}</tspan>
+    ))}
+  </text>
+  <text
+    x={w * 0.05}
+    y={h * 0.86}
+    fill="rgba(255,255,255,0.4)"
+    font-family="system-ui, sans-serif"
+    font-size={h * 0.045}
+    font-weight="500"
+    letter-spacing="0.04em"
+  >
+    Lootpaper Blog
+  </text>
+</svg>

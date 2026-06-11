@@ -1,0 +1,83 @@
+---
+interface Heading {
+  level: number;
+  text: string;
+  id: string;
+}
+
+interface Props {
+  headings: Heading[];
+  class?: string;
+}
+
+const { headings, class: className } = Astro.props;
+---
+
+<nav class:list={["toc-root", className]}>
+  <h2 class="text-xs font-semibold text-muted-foreground tracking-widest uppercase mb-3">On this page</h2>
+  <ul class="toc-list space-y-0.5" id="toc-list">
+    {headings.map((h, i) => (
+      <li class="toc-item" data-level={h.level}>
+        <a
+          href={`#${h.id}`}
+          class="toc-link block text-sm text-muted-foreground hover:text-foreground transition-colors duration-200 py-1 rounded-md px-2 -mx-2"
+          data-level={h.level}
+        >
+          {h.text}
+        </a>
+      </li>
+    ))}
+  </ul>
+</nav>
+
+<style>
+  .toc-root {
+    position: sticky;
+    top: 5rem;
+  }
+
+  .toc-item[data-level="3"] .toc-link { padding-left: 1.25rem; }
+  .toc-item[data-level="4"] .toc-link { padding-left: 2rem; }
+
+  .toc-link.active {
+    color: var(--primary);
+    background: color-mix(in srgb, var(--primary) 8%, transparent);
+    font-weight: 500;
+  }
+
+  .toc-link {
+    border-left: 2px solid transparent;
+    margin-left: -0.5rem;
+    padding-left: calc(0.5rem + 2px) !important;
+  }
+
+  .toc-link.active {
+    border-left-color: var(--primary);
+  }
+</style>
+
+<script>
+  const links = document.querySelectorAll("#toc-list .toc-link");
+  const headings = document.querySelectorAll("article h2, article h3, article h4");
+
+  function updateActive() {
+    let current = null;
+    const scrollPos = window.scrollY + 100;
+
+    headings.forEach((h, i) => {
+      const next = headings[i + 1];
+      const hTop = h.offsetTop;
+      const nextTop = next ? next.offsetTop : Infinity;
+
+      if (scrollPos >= hTop && scrollPos < nextTop) {
+        current = links[i] || null;
+      }
+    });
+
+    links.forEach((l) => l.classList.remove("active"));
+    current?.classList.add("active");
+  }
+
+  window.addEventListener("scroll", updateActive, { passive: true });
+  updateActive();
+</script>

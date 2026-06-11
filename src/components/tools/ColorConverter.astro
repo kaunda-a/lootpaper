@@ -1,0 +1,88 @@
+<div class="w-full max-w-lg mx-auto">
+  <div class="rounded-xl border border-border bg-card p-7">
+    <div class="flex gap-3 mb-5">
+      <input type="text" id="color-input" value="#D76D77" placeholder="#D76D77 or rgb(215,109,119)" class="flex h-11 w-full rounded-xl border border-input bg-background px-4 py-2 text-sm text-foreground ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring transition-all duration-200 font-mono" />
+      <button id="convert-btn" class="btn-primary h-11 shrink-0 px-5">Convert</button>
+    </div>
+    <div id="color-preview" class="h-24 rounded-xl border border-border mb-5 transition-all duration-300" style="background:#D76D77"></div>
+    <div id="error" class="hidden mb-4 p-3 rounded-lg border border-red-500/30 bg-red-500/5 text-sm text-red-500"></div>
+    <div id="results" class="hidden space-y-2">
+      <div class="flex items-center justify-between p-3 rounded-lg bg-muted/30 border border-border">
+        <span class="text-xs text-muted-foreground font-mono">HEX</span>
+        <input id="hex-val" readonly class="bg-transparent text-sm text-foreground font-mono text-right w-32 focus:outline-none" />
+      </div>
+      <div class="flex items-center justify-between p-3 rounded-lg bg-muted/30 border border-border">
+        <span class="text-xs text-muted-foreground font-mono">RGB</span>
+        <input id="rgb-val" readonly class="bg-transparent text-sm text-foreground font-mono text-right w-48 focus:outline-none" />
+      </div>
+      <div class="flex items-center justify-between p-3 rounded-lg bg-muted/30 border border-border">
+        <span class="text-xs text-muted-foreground font-mono">HSL</span>
+        <input id="hsl-val" readonly class="bg-transparent text-sm text-foreground font-mono text-right w-48 focus:outline-none" />
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  const input = document.getElementById("color-input");
+  const btn = document.getElementById("convert-btn");
+  const preview = document.getElementById("color-preview");
+  const error = document.getElementById("error");
+  const results = document.getElementById("results");
+
+  function parseColor(str) {
+    str = str.trim();
+    // Hex
+    let m = str.match(/^#?([0-9a-f]{3,8})$/i);
+    if (m) {
+      let h = m[1];
+      if (h.length === 3) h = h[0]+h[0]+h[1]+h[1]+h[2]+h[2];
+      if (h.length === 6) return { r: parseInt(h.slice(0,2),16), g: parseInt(h.slice(2,4),16), b: parseInt(h.slice(4,6),16) };
+    }
+    // rgb() / rgba()
+    m = str.match(/rgba?\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)/i);
+    if (m) return { r: +m[1], g: +m[2], b: +m[3] };
+    return null;
+  }
+
+  function toHex(r,g,b) { return "#" + [r,g,b].map(c => c.toString(16).padStart(2,"0")).join("").toUpperCase(); }
+  function toRgb(r,g,b) { return `rgb(${r}, ${g}, ${b})`; }
+  function toHsl(r,g,b) {
+    r/=255; g/=255; b/=255;
+    const max = Math.max(r,g,b), min = Math.min(r,g,b);
+    let h,s,l = (max+min)/2;
+    if (max === min) { h = s = 0; } else {
+      const d = max - min;
+      s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
+      switch (max) {
+        case r: h = ((g - b) / d + (g < b ? 6 : 0)) / 6; break;
+        case g: h = ((b - r) / d + 2) / 6; break;
+        case b: h = ((r - g) / d + 4) / 6; break;
+      }
+    }
+    return `hsl(${Math.round(h*360)}, ${Math.round(s*100)}%, ${Math.round(l*100)}%)`;
+  }
+
+  function convert() {
+    const val = input.value.trim();
+    if (!val) return;
+    const c = parseColor(val);
+    if (!c || c.r === undefined || c.g === undefined || c.b === undefined ||
+        c.r < 0 || c.r > 255 || c.g < 0 || c.g > 255 || c.b < 0 || c.b > 255) {
+      error.textContent = "Invalid color. Try #D76D77 or rgb(215,109,119).";
+      error.classList.remove("hidden");
+      results.classList.add("hidden");
+      return;
+    }
+    error.classList.add("hidden");
+    preview.style.background = `rgb(${c.r},${c.g},${c.b})`;
+    document.getElementById("hex-val").value = toHex(c.r,c.g,c.b);
+    document.getElementById("rgb-val").value = toRgb(c.r,c.g,c.b);
+    document.getElementById("hsl-val").value = toHsl(c.r,c.g,c.b);
+    results.classList.remove("hidden");
+  }
+
+  btn.addEventListener("click", convert);
+  input.addEventListener("keydown", (e) => { if (e.key === "Enter") convert(); });
+  convert();
+</script>

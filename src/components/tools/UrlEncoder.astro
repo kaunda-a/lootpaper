@@ -1,0 +1,28 @@
+<div class="w-full max-w-lg mx-auto">
+  <div class="rounded-xl border border-border bg-card p-7">
+    <div class="flex gap-3 mb-4">
+      <select id="mode-select" class="flex h-11 rounded-xl border border-input bg-background px-3 py-2 text-sm text-foreground ring-offset-background focus:outline-none focus:ring-2 focus:ring-ring transition-all duration-200">
+        <option value="encode">Encode</option><option value="decode">Decode</option>
+      </select>
+    </div>
+    <textarea id="input-text" rows="4" placeholder="Enter text or URL..." class="flex w-full rounded-xl border border-input bg-background px-4 py-3 text-sm text-foreground font-mono ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring transition-all duration-200 resize-y mb-3"></textarea>
+    <button id="convert-btn" class="btn-primary h-10 px-5 text-sm mb-3">Convert</button>
+    <textarea id="output-text" rows="4" readonly class="flex w-full rounded-xl border border-input bg-background px-4 py-3 text-sm text-foreground font-mono ring-offset-background focus:outline-none transition-all duration-200 resize-y"></textarea>
+  </div>
+</div>
+
+<script>
+  const mode = document.getElementById("mode-select");
+  const input = document.getElementById("input-text");
+  const output = document.getElementById("output-text");
+  const btn = document.getElementById("convert-btn");
+
+  function convert() {
+    try {
+      output.value = mode.value === "encode" ? encodeURIComponent(input.value) : decodeURIComponent(input.value);
+    } catch { output.value = "Error: Invalid input"; }
+  }
+
+  btn.addEventListener("click", convert);
+  mode.addEventListener("change", convert);
+</script>

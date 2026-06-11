@@ -1,0 +1,23 @@
+---
+interface Props {
+  id?: string;
+}
+
+const { id } = Astro.props;
+---
+
+{
+  id && (
+    <script type="text/javascript" src={`https://quartzfiles.com/script_include.php?id=${id}`} />
+  )
+}
+
+<div class="cpa-grip-locker" data-status={id ? "locked" : "unlocked"}>
+  <slot />
+</div>
+
+<style>
+  .cpa-grip-locker[data-status="unlocked"] {
+    display: contents;
+  }
+</style>

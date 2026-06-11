@@ -1,0 +1,71 @@
+---
+import "../styles/global.css";
+import { ClientRouter } from "astro:transitions";
+import Header from "../components/layout/Header.astro";
+import Footer from "../components/layout/Footer.astro";
+import BackgroundEffects from "../components/layout/BackgroundEffects.astro";
+import ThemeInit from "../components/ui/ThemeInit.astro";
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>About — Lootpaper</title>
+    <meta name="description" content="Lootpaper provides free marketing tools, curated software deals, and resources for makers and marketers." />
+    <meta property="og:title" content="About Lootpaper" />
+    <meta property="og:description" content="Free marketing tools & curated deals for makers." />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    
+    <ThemeInit />
+    <ClientRouter />
+  </head>
+  <body class="bg-background text-foreground">
+    <BackgroundEffects />
+    <Header currentPath={Astro.url.pathname} />
+
+    <section class="py-20">
+      <div class="container max-w-2xl">
+        <span class="inline-flex h-7 items-center rounded-full border border-primary/20 bg-primary/8 px-3.5 text-xs font-medium text-primary mb-6">About</span>
+        <h1 class="text-4xl lg:text-5xl font-bold tracking-tight mb-5">What is <span class="gradient-text">Lootpaper</span>?</h1>
+        <div class="space-y-5 text-muted-foreground leading-relaxed">
+          <p class="text-lg">
+            Lootpaper is a no-nonsense collection of free marketing tools, curated software deals, and resources for makers, indie hackers, and small teams who want to grow their online presence without the bloat.
+          </p>
+          <p>
+            Most marketing "tools" are just landing pages for paid products. We wanted something different &mdash; a place where the tools actually work for free, the deals are hand-picked (not scraped), and nothing requires an account.
+          </p>
+          <p>
+            We started with a GitHub SEO Analyzer because every developer has repos that deserve to be found. More tools are on the way &mdash; each one solving a real problem without asking for your email or credit card.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="border-t border-border py-20">
+      <div class="container max-w-2xl">
+        <div class="grid gap-6 md:grid-cols-2">
+          <div class="rounded-xl border border-border bg-card p-7 card-hover">
+            <h3 class="font-semibold text-lg mb-2">Why the name?</h3>
+            <p class="text-sm text-muted-foreground leading-relaxed">Loot + paper. Because we help you find good loot (deals, tools, resources) and put it on paper (documentation, repos, content).</p>
+          </div>
+          <div class="rounded-xl border border-border bg-card p-7 card-hover">
+            <h3 class="font-semibold text-lg mb-2">Who is it for?</h3>
+            <p class="text-sm text-muted-foreground leading-relaxed">Indie hackers, open-source maintainers, solo founders, and small marketing teams who want practical tools without enterprise pricing.</p>
+          </div>
+          <div class="rounded-xl border border-border bg-card p-7 card-hover">
+            <h3 class="font-semibold text-lg mb-2">Is it really free?</h3>
+            <p class="text-sm text-muted-foreground leading-relaxed">Yes. All tools are 100% free, no signup required. We earn affiliate commissions from some deals, which keeps the lights on.</p>
+          </div>
+          <div class="rounded-xl border border-border bg-card p-7 card-hover">
+            <h3 class="font-semibold text-lg mb-2">What&rsquo;s coming?</h3>
+            <p class="text-sm text-muted-foreground leading-relaxed">Meta Tag Inspector, Redirect Checker, Keyword Suggester, and more. Follow us for updates as we ship each one.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <Footer />
+  </body>
+</html>

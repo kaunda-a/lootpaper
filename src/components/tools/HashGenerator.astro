@@ -1,0 +1,81 @@
+<div class="w-full max-w-lg mx-auto">
+  <div class="rounded-xl border border-border bg-card p-7">
+    <div class="flex gap-3 mb-4">
+      <select id="algo-select" class="flex h-11 rounded-xl border border-input bg-background px-3 py-2 text-sm text-foreground ring-offset-background focus:outline-none focus:ring-2 focus:ring-ring transition-all duration-200">
+        <option value="MD5">MD5</option><option value="SHA-1">SHA-1</option><option value="SHA-256">SHA-256</option><option value="SHA-512">SHA-512</option>
+      </select>
+    </div>
+    <textarea id="input-text" rows="4" placeholder="Enter text to hash..." class="flex w-full rounded-xl border border-input bg-background px-4 py-3 text-sm text-foreground font-mono ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring transition-all duration-200 resize-y mb-3"></textarea>
+    <button id="hash-btn" class="btn-primary h-10 px-5 text-sm mb-3">Generate Hash</button>
+    <div class="relative">
+      <input id="output" readonly class="flex h-12 w-full rounded-xl border border-input bg-background px-4 py-2 text-sm text-foreground font-mono tracking-wide ring-offset-background focus:outline-none transition-all duration-200 pr-12" />
+      <button id="copy-btn" class="absolute right-3 top-1/2 -translate-y-1/2 text-xs text-primary hover:underline">Copy</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  const algo = document.getElementById("algo-select");
+  const input = document.getElementById("input-text");
+  const output = document.getElementById("output");
+  const btn = document.getElementById("hash-btn");
+
+  const MD5 = (s) => {
+    const rotate = (x, n) => (x << n) | (x >>> (32 - n));
+    const pad = (s) => {
+      const l = s.length * 8;
+      s += String.fromCharCode(0x80);
+      while ((s.length * 8) % 512 !== 448) s += String.fromCharCode(0);
+      const b = new Uint32Array(2);
+      b[0] = l & 0xFFFFFFFF; b[1] = Math.floor(l / 0x100000000);
+      for (let i = 0; i < 2; i++) for (let j = 0; j < 4; j++) s += String.fromCharCode((b[i] >>> (j * 8)) & 0xFF);
+      return s;
+    };
+    const T = new Uint32Array(64);
+    for (let i = 0; i < 64; i++) T[i] = Math.floor(Math.abs(Math.sin(i + 1)) * 0x100000000);
+    const S = [7, 12, 17, 22, 7, 12, 17, 22, 7, 12, 17, 22, 7, 12, 17, 22, 5, 9, 14, 20, 5, 9, 14, 20, 5, 9, 14, 20, 5, 9, 14, 20, 4, 11, 16, 23, 4, 11, 16, 23, 4, 11, 16, 23, 4, 11, 16, 23, 6, 10, 15, 21, 6, 10, 15, 21, 6, 10, 15, 21, 6, 10, 15, 21];
+    let a0 = 0x67452301, b0 = 0xEFCDAB89, c0 = 0x98BADCFE, d0 = 0x10325476;
+    const padded = pad(s);
+    const words = new Uint32Array(padded.length / 4);
+    for (let i = 0; i < padded.length; i++) words[i >> 2] |= (padded.charCodeAt(i) & 0xFF) << ((i % 4) * 8);
+    for (let chunk = 0; chunk < words.length; chunk += 16) {
+      const X = words.slice(chunk, chunk + 16);
+      let A = a0, B = b0, C = c0, D = d0;
+      for (let i = 0; i < 64; i++) {
+        let F, g;
+        if (i < 16) { F = (B & C) | (~B & D); g = i; }
+        else if (i < 32) { F = (D & B) | (~D & C); g = (5 * i + 1) % 16; }
+        else if (i < 48) { F = B ^ C ^ D; g = (3 * i + 5) % 16; }
+        else { F = C ^ (B | ~D); g = (7 * i) % 16; }
+        F = (F + A + T[i] + X[g]) | 0;
+        A = D; D = C; C = B; B = (B + rotate(F, S[i])) | 0;
+      }
+      a0 = (a0 + A) | 0; b0 = (b0 + B) | 0; c0 = (c0 + C) | 0; d0 = (d0 + D) | 0;
+    }
+    const leHex = (n) => {
+      const b = new Uint8Array(4);
+      b[0] = n & 0xFF; b[1] = (n >>> 8) & 0xFF; b[2] = (n >>> 16) & 0xFF; b[3] = (n >>> 24) & 0xFF;
+      return Array.from(b).map(x => x.toString(16).padStart(2, "0")).join("");
+    };
+    return leHex(a0) + leHex(b0) + leHex(c0) + leHex(d0);
+  };
+
+  async function hash() {
+    if (!input.value) return;
+    if (algo.value === "MD5") {
+      output.value = MD5(input.value);
+    } else {
+      const enc = new TextEncoder().encode(input.value);
+      const buf = await crypto.subtle.digest(algo.value, enc);
+      output.value = Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2, "0")).join("");
+    }
+  }
+
+  btn.addEventListener("click", hash);
+  algo.addEventListener("change", hash);
+  document.getElementById("copy-btn").addEventListener("click", () => {
+    navigator.clipboard.writeText(output.value);
+    document.getElementById("copy-btn").textContent = "Copied!";
+    setTimeout(() => { document.getElementById("copy-btn").textContent = "Copy"; }, 2000);
+  });
+</script>

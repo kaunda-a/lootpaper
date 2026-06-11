@@ -1,0 +1,38 @@
+<div class="w-full max-w-lg mx-auto">
+  <div class="rounded-xl border border-border bg-card p-7">
+    <div class="flex gap-3 mb-4">
+      <textarea id="json-input" rows="8" placeholder='{"key": "value"}' class="flex w-full rounded-xl border border-input bg-background px-4 py-3 text-sm text-foreground font-mono ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring transition-all duration-200 resize-y"></textarea>
+    </div>
+    <div class="flex gap-2 mb-4 flex-wrap">
+      <button id="format-btn" class="btn-primary h-9 px-4 text-xs">Format</button>
+      <button id="minify-btn" class="btn-secondary h-9 px-4 text-xs">Minify</button>
+      <button id="validate-btn" class="btn-secondary h-9 px-4 text-xs">Validate</button>
+    </div>
+    <div id="error" class="hidden mb-3 p-3 rounded-lg border border-red-500/30 bg-red-500/5 text-sm text-red-500"></div>
+    <textarea id="json-output" rows="8" readonly class="flex w-full rounded-xl border border-input bg-background px-4 py-3 text-sm text-foreground font-mono ring-offset-background focus:outline-none transition-all duration-200 resize-y"></textarea>
+  </div>
+</div>
+
+<script>
+  const input = document.getElementById("json-input");
+  const output = document.getElementById("json-output");
+  const error = document.getElementById("error");
+
+  function process(fn) {
+    try {
+      const parsed = JSON.parse(input.value);
+      output.value = fn(parsed);
+      error.classList.add("hidden");
+    } catch (e) {
+      error.textContent = "Invalid JSON: " + e.message;
+      error.classList.remove("hidden");
+      output.value = "";
+    }
+  }
+
+  document.getElementById("format-btn").addEventListener("click", () => process(j => JSON.stringify(j, null, 2)));
+  document.getElementById("minify-btn").addEventListener("click", () => process(j => JSON.stringify(j)));
+  document.getElementById("validate-btn").addEventListener("click", () => {
+    try { JSON.parse(input.value); error.textContent = "✓ Valid JSON"; error.className = "mb-3 p-3 rounded-lg border border-green-500/30 bg-green-500/5 text-sm text-green-500"; error.classList.remove("hidden"); } catch (e) { error.textContent = "Invalid: " + e.message; error.className = "mb-3 p-3 rounded-lg border border-red-500/30 bg-red-500/5 text-sm text-red-500"; error.classList.remove("hidden"); }
+  });
+</script>

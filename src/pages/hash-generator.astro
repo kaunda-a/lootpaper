@@ -1,0 +1,43 @@
+---
+import "../styles/global.css";
+import { ClientRouter } from "astro:transitions";
+import Header from "../components/layout/Header.astro";
+import Footer from "../components/layout/Footer.astro";
+import BackgroundEffects from "../components/layout/BackgroundEffects.astro";
+import HashGenerator from "../components/tools/HashGenerator.astro";
+import ThemeInit from "../components/ui/ThemeInit.astro";
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Hash Generator — Lootpaper</title>
+    <meta name="description" content="Generate MD5, SHA-1, SHA-256, and SHA-512 hashes client-side. Free, no data leaves your browser." />
+    <meta property="og:title" content="Hash Generator — Lootpaper" />
+    <meta property="og:description" content="Generate MD5, SHA-1, SHA-256, SHA-512 hashes" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://lootpaper.com/hash-generator" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    
+    <ThemeInit />
+    <ClientRouter />
+  </head>
+  <body class="bg-background text-foreground">
+    <BackgroundEffects />
+    <Header currentPath={Astro.url.pathname} />
+    <main class="py-20">
+      <div class="container">
+        <div class="text-center mb-10">
+          <span class="inline-flex h-7 items-center rounded-full border border-primary/20 bg-primary/8 px-3.5 text-xs font-medium text-primary mb-4">Tool</span>
+          <h1 class="text-3xl lg:text-4xl font-bold tracking-tight mb-3"><span class="gradient-text">Hash Generator</span></h1>
+          <p class="text-muted-foreground max-w-lg mx-auto">Generate MD5, SHA-1, SHA-256, and SHA-512 hashes client-side. Free, no data leaves your browser.</p>
+        </div>
+        <HashGenerator />
+      </div>
+    </main>
+    <Footer />
+  </body>
+</html>

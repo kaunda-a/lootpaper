@@ -1,0 +1,262 @@
+---
+import "../styles/global.css";
+import { ClientRouter } from "astro:transitions";
+import Header from "../components/layout/Header.astro";
+import Footer from "../components/layout/Footer.astro";
+import BackgroundEffects from "../components/layout/BackgroundEffects.astro";
+import ThemeInit from "../components/ui/ThemeInit.astro";
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Free Marketing Tools — Lootpaper</title>
+    <meta name="description" content="Free online tools: color converter, password generator, UUID generator, word counter, JSON formatter, and more." />
+    <meta property="og:title" content="Free Marketing Tools — Lootpaper" />
+    <meta property="og:description" content="Free online tools: color converter, password generator, UUID generator, word counter, JSON formatter, and more." />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    
+    <ThemeInit />
+    <ClientRouter />
+  </head>
+  <body class="bg-background text-foreground">
+    <BackgroundEffects />
+    <Header currentPath={Astro.url.pathname} />
+
+    <section class="py-20 text-center">
+      <div class="container">
+        <span class="inline-flex h-7 items-center rounded-full border border-primary/20 bg-primary/8 px-3.5 text-xs font-medium text-primary mb-6">Tools</span>
+        <h1 class="text-4xl lg:text-5xl font-bold tracking-tight mb-3">Free Marketing <span class="gradient-text">Tools</span></h1>
+        <p class="text-muted-foreground max-w-lg mx-auto text-lg">Practical tools that solve real problems. No signup, no credit card, no data stored.</p>
+      </div>
+    </section>
+
+    <section class="pb-20">
+      <div class="container">
+        <div class="grid gap-6 md:grid-cols-2">
+          <a href="/color-converter" class="rounded-xl border border-border bg-card p-7 card-hover glow-border block group">
+            <div class="flex items-center gap-4 mb-4">
+              <div class="size-12 rounded-xl bg-primary/10 flex items-center justify-center shrink-0 group-hover:bg-primary/15 transition-colors duration-300">
+                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-primary"><path d="M12 3a9 9 0 0 0-9 9 9 9 0 0 0 9 9 3 3 0 0 0 3-3 3 3 0 0 0-3-3h-1a3 3 0 0 1-3-3 3 3 0 0 1 3-3"/><path d="M18 3a3 3 0 0 1 3 3 3 3 0 0 1-3 3 3 3 0 0 1-3-3 3 3 0 0 1 3-3z"/><circle cx="7.5" cy="14.5" r="1.5"/></svg>
+              </div>
+              <div>
+                <h3 class="font-semibold text-lg">Color Converter</h3>
+                <span class="inline-flex h-5 items-center rounded-full bg-green-500/15 text-green-500 px-2.5 text-[10px] font-semibold">Live</span>
+              </div>
+            </div>
+            <p class="text-sm text-muted-foreground mb-5 leading-relaxed">Convert between HEX, RGB, and HSL color formats with a live color preview. Perfect for designers and developers.</p>
+            <div class="flex items-center gap-2">
+              <span class="inline-flex h-5 items-center rounded-full bg-primary/15 text-primary px-2.5 text-[10px] font-semibold">Free</span>
+              <span class="text-xs text-muted-foreground">No account required</span>
+            </div>
+          </a>
+
+          <a href="/email-validator" class="rounded-xl border border-border bg-card p-7 card-hover glow-border block group">
+            <div class="flex items-center gap-4 mb-4">
+              <div class="size-12 rounded-xl bg-primary/10 flex items-center justify-center shrink-0 group-hover:bg-primary/15 transition-colors duration-300">
+                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-primary"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+              </div>
+              <div>
+                <h3 class="font-semibold text-lg">Email Validator</h3>
+                <span class="inline-flex h-5 items-center rounded-full bg-green-500/15 text-green-500 px-2.5 text-[10px] font-semibold">Live</span>
+              </div>
+            </div>
+            <p class="text-sm text-muted-foreground mb-5 leading-relaxed">Validate any email address client-side. Checks format, length, disposable domains, and TLD. No data ever leaves your browser.</p>
+            <div class="flex items-center gap-2">
+              <span class="inline-flex h-5 items-center rounded-full bg-primary/15 text-primary px-2.5 text-[10px] font-semibold">Free</span>
+              <span class="text-xs text-muted-foreground">No account required</span>
+            </div>
+          </a>
+
+          <a href="/password-generator" class="rounded-xl border border-border bg-card p-7 card-hover glow-border block group">
+            <div class="flex items-center gap-4 mb-4">
+              <div class="size-12 rounded-xl bg-primary/10 flex items-center justify-center shrink-0 group-hover:bg-primary/15 transition-colors duration-300">
+                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-primary"><path d="M12 2a10 10 0 0 0-10 10 10 10 0 0 0 10 10 10 10 0 0 0 10-10A10 10 0 0 0 12 2z"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
+              </div>
+              <div>
+                <h3 class="font-semibold text-lg">Password Generator</h3>
+                <span class="inline-flex h-5 items-center rounded-full bg-green-500/15 text-green-500 px-2.5 text-[10px] font-semibold">Live</span>
+              </div>
+            </div>
+            <p class="text-sm text-muted-foreground mb-5 leading-relaxed">Generate secure random passwords with custom length, character sets, and strength indicator.</p>
+            <div class="flex items-center gap-2">
+              <span class="inline-flex h-5 items-center rounded-full bg-primary/15 text-primary px-2.5 text-[10px] font-semibold">Free</span>
+              <span class="text-xs text-muted-foreground">No account required</span>
+            </div>
+          </a>
+
+          <a href="/uuid-generator" class="rounded-xl border border-border bg-card p-7 card-hover glow-border block group">
+            <div class="flex items-center gap-4 mb-4">
+              <div class="size-12 rounded-xl bg-primary/10 flex items-center justify-center shrink-0 group-hover:bg-primary/15 transition-colors duration-300">
+                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-primary"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+              </div>
+              <div>
+                <h3 class="font-semibold text-lg">UUID Generator</h3>
+                <span class="inline-flex h-5 items-center rounded-full bg-green-500/15 text-green-500 px-2.5 text-[10px] font-semibold">Live</span>
+              </div>
+            </div>
+            <p class="text-sm text-muted-foreground mb-5 leading-relaxed">Generate UUID v4 and v1 identifiers instantly. Copy with one click.</p>
+            <div class="flex items-center gap-2">
+              <span class="inline-flex h-5 items-center rounded-full bg-primary/15 text-primary px-2.5 text-[10px] font-semibold">Free</span>
+              <span class="text-xs text-muted-foreground">No account required</span>
+            </div>
+          </a>
+
+          <a href="/word-counter" class="rounded-xl border border-border bg-card p-7 card-hover glow-border block group">
+            <div class="flex items-center gap-4 mb-4">
+              <div class="size-12 rounded-xl bg-primary/10 flex items-center justify-center shrink-0 group-hover:bg-primary/15 transition-colors duration-300">
+                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-primary"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/></svg>
+              </div>
+              <div>
+                <h3 class="font-semibold text-lg">Word Counter</h3>
+                <span class="inline-flex h-5 items-center rounded-full bg-green-500/15 text-green-500 px-2.5 text-[10px] font-semibold">Live</span>
+              </div>
+            </div>
+            <p class="text-sm text-muted-foreground mb-5 leading-relaxed">Count words, characters, sentences, paragraphs, lines, reading time, and readability.</p>
+            <div class="flex items-center gap-2">
+              <span class="inline-flex h-5 items-center rounded-full bg-primary/15 text-primary px-2.5 text-[10px] font-semibold">Free</span>
+              <span class="text-xs text-muted-foreground">No account required</span>
+            </div>
+          </a>
+
+          <a href="/json-formatter" class="rounded-xl border border-border bg-card p-7 card-hover glow-border block group">
+            <div class="flex items-center gap-4 mb-4">
+              <div class="size-12 rounded-xl bg-primary/10 flex items-center justify-center shrink-0 group-hover:bg-primary/15 transition-colors duration-300">
+                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-primary"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+              </div>
+              <div>
+                <h3 class="font-semibold text-lg">JSON Formatter</h3>
+                <span class="inline-flex h-5 items-center rounded-full bg-green-500/15 text-green-500 px-2.5 text-[10px] font-semibold">Live</span>
+              </div>
+            </div>
+            <p class="text-sm text-muted-foreground mb-5 leading-relaxed">Format, minify, and validate JSON instantly. Great for debugging APIs and config files.</p>
+            <div class="flex items-center gap-2">
+              <span class="inline-flex h-5 items-center rounded-full bg-primary/15 text-primary px-2.5 text-[10px] font-semibold">Free</span>
+              <span class="text-xs text-muted-foreground">No account required</span>
+            </div>
+          </a>
+
+          <a href="/base64-encoder" class="rounded-xl border border-border bg-card p-7 card-hover glow-border block group">
+            <div class="flex items-center gap-4 mb-4">
+              <div class="size-12 rounded-xl bg-primary/10 flex items-center justify-center shrink-0 group-hover:bg-primary/15 transition-colors duration-300">
+                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-primary"><rect width="8" height="6" x="2" y="9" rx="1"/><path d="M10 12h10"/><path d="M10 7h6"/><path d="M10 17h8"/></svg>
+              </div>
+              <div>
+                <h3 class="font-semibold text-lg">Base64 Encoder</h3>
+                <span class="inline-flex h-5 items-center rounded-full bg-green-500/15 text-green-500 px-2.5 text-[10px] font-semibold">Live</span>
+              </div>
+            </div>
+            <p class="text-sm text-muted-foreground mb-5 leading-relaxed">Encode and decode Base64 text instantly. Supports all string data types.</p>
+            <div class="flex items-center gap-2">
+              <span class="inline-flex h-5 items-center rounded-full bg-primary/15 text-primary px-2.5 text-[10px] font-semibold">Free</span>
+              <span class="text-xs text-muted-foreground">No account required</span>
+            </div>
+          </a>
+
+          <a href="/url-encoder" class="rounded-xl border border-border bg-card p-7 card-hover glow-border block group">
+            <div class="flex items-center gap-4 mb-4">
+              <div class="size-12 rounded-xl bg-primary/10 flex items-center justify-center shrink-0 group-hover:bg-primary/15 transition-colors duration-300">
+                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-primary"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+              </div>
+              <div>
+                <h3 class="font-semibold text-lg">URL Encoder</h3>
+                <span class="inline-flex h-5 items-center rounded-full bg-green-500/15 text-green-500 px-2.5 text-[10px] font-semibold">Live</span>
+              </div>
+            </div>
+            <p class="text-sm text-muted-foreground mb-5 leading-relaxed">Encode and decode URLs, query parameters, and special characters safely.</p>
+            <div class="flex items-center gap-2">
+              <span class="inline-flex h-5 items-center rounded-full bg-primary/15 text-primary px-2.5 text-[10px] font-semibold">Free</span>
+              <span class="text-xs text-muted-foreground">No account required</span>
+            </div>
+          </a>
+
+          <a href="/case-converter" class="rounded-xl border border-border bg-card p-7 card-hover glow-border block group">
+            <div class="flex items-center gap-4 mb-4">
+              <div class="size-12 rounded-xl bg-primary/10 flex items-center justify-center shrink-0 group-hover:bg-primary/15 transition-colors duration-300">
+                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-primary"><path d="m5 8 6 6"/><path d="m4 14 6-6 2-3"/><path d="M2 5h12"/><path d="M7 2h1"/></svg>
+              </div>
+              <div>
+                <h3 class="font-semibold text-lg">Case Converter</h3>
+                <span class="inline-flex h-5 items-center rounded-full bg-green-500/15 text-green-500 px-2.5 text-[10px] font-semibold">Live</span>
+              </div>
+            </div>
+            <p class="text-sm text-muted-foreground mb-5 leading-relaxed">Convert between 11 text formats: upper, lower, title, camelCase, snake_case, and more.</p>
+            <div class="flex items-center gap-2">
+              <span class="inline-flex h-5 items-center rounded-full bg-primary/15 text-primary px-2.5 text-[10px] font-semibold">Free</span>
+              <span class="text-xs text-muted-foreground">No account required</span>
+            </div>
+          </a>
+
+          <a href="/lorem-ipsum" class="rounded-xl border border-border bg-card p-7 card-hover glow-border block group">
+            <div class="flex items-center gap-4 mb-4">
+              <div class="size-12 rounded-xl bg-primary/10 flex items-center justify-center shrink-0 group-hover:bg-primary/15 transition-colors duration-300">
+                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-primary"><path d="M4 7V4h16v3"/><path d="M9 20h6"/><path d="M12 4v16"/></svg>
+              </div>
+              <div>
+                <h3 class="font-semibold text-lg">Lorem Ipsum</h3>
+                <span class="inline-flex h-5 items-center rounded-full bg-green-500/15 text-green-500 px-2.5 text-[10px] font-semibold">Live</span>
+              </div>
+            </div>
+            <p class="text-sm text-muted-foreground mb-5 leading-relaxed">Generate lorem ipsum placeholder text in paragraphs, sentences, or words.</p>
+            <div class="flex items-center gap-2">
+              <span class="inline-flex h-5 items-center rounded-full bg-primary/15 text-primary px-2.5 text-[10px] font-semibold">Free</span>
+              <span class="text-xs text-muted-foreground">No account required</span>
+            </div>
+          </a>
+
+          <a href="/hash-generator" class="rounded-xl border border-border bg-card p-7 card-hover glow-border block group">
+            <div class="flex items-center gap-4 mb-4">
+              <div class="size-12 rounded-xl bg-primary/10 flex items-center justify-center shrink-0 group-hover:bg-primary/15 transition-colors duration-300">
+                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-primary"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M9 9h6"/><path d="M9 13h6"/><path d="M9 17h4"/></svg>
+              </div>
+              <div>
+                <h3 class="font-semibold text-lg">Hash Generator</h3>
+                <span class="inline-flex h-5 items-center rounded-full bg-green-500/15 text-green-500 px-2.5 text-[10px] font-semibold">Live</span>
+              </div>
+            </div>
+            <p class="text-sm text-muted-foreground mb-5 leading-relaxed">Generate MD5, SHA-1, SHA-256, SHA-512 hashes in your browser. Zero server-side.</p>
+            <div class="flex items-center gap-2">
+              <span class="inline-flex h-5 items-center rounded-full bg-primary/15 text-primary px-2.5 text-[10px] font-semibold">Free</span>
+              <span class="text-xs text-muted-foreground">No account required</span>
+            </div>
+          </a>
+
+          <a href="/number-base" class="rounded-xl border border-border bg-card p-7 card-hover glow-border block group">
+            <div class="flex items-center gap-4 mb-4">
+              <div class="size-12 rounded-xl bg-primary/10 flex items-center justify-center shrink-0 group-hover:bg-primary/15 transition-colors duration-300">
+                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-primary"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+              </div>
+              <div>
+                <h3 class="font-semibold text-lg">Number Base</h3>
+                <span class="inline-flex h-5 items-center rounded-full bg-green-500/15 text-green-500 px-2.5 text-[10px] font-semibold">Live</span>
+              </div>
+            </div>
+            <p class="text-sm text-muted-foreground mb-5 leading-relaxed">Convert between binary, octal, decimal, and hexadecimal number systems instantly.</p>
+            <div class="flex items-center gap-2">
+              <span class="inline-flex h-5 items-center rounded-full bg-primary/15 text-primary px-2.5 text-[10px] font-semibold">Free</span>
+              <span class="text-xs text-muted-foreground">No account required</span>
+            </div>
+          </a>
+
+          <div class="rounded-xl border border-border bg-card p-7 opacity-50">
+            <div class="flex items-center gap-4 mb-4">
+              <div class="size-12 rounded-xl bg-primary/10 flex items-center justify-center shrink-0">
+                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-primary"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg>
+              </div>
+              <div>
+                <h3 class="font-semibold text-lg">Keyword Suggester</h3>
+                <span class="inline-flex h-5 items-center rounded-full bg-muted text-muted-foreground px-2.5 text-[10px] font-semibold">Planned</span>
+              </div>
+            </div>
+            <p class="text-sm text-muted-foreground mb-5 leading-relaxed">Generate relevant keyword ideas from a seed term. See search volume estimates, related queries, and question-based keywords to target in your content.</p>
+            <span class="inline-flex h-5 items-center rounded-full bg-muted text-muted-foreground px-2.5 text-[10px] font-semibold">Planned</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <Footer />
+  </body>
+</html>

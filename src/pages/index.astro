@@ -1,0 +1,222 @@
+---
+import "../styles/global.css";
+import { ClientRouter } from "astro:transitions";
+import Header from "../components/layout/Header.astro";
+import Footer from "../components/layout/Footer.astro";
+import BackgroundEffects from "../components/layout/BackgroundEffects.astro";
+import ThemeInit from "../components/ui/ThemeInit.astro";
+import SpotlightScript from "../components/ui/SpotlightScript.astro";
+import AllAds from "../components/ads/AllAds.astro";
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Lootpaper — Free Marketing Tools, Daily Deals & Resources</title>
+    <meta name="description" content="Discover free marketing tools, daily deals on software, and curated resources to grow your online presence — no account required." />
+    <meta property="og:title" content="Lootpaper — Free Marketing Tools & Deals" />
+    <meta property="og:description" content="Free SEO analyzer, curated software deals, and marketing resources — all in one place." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://lootpaper.com" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <AllAds zone="popunder" />
+    <ThemeInit />
+    <ClientRouter />
+  </head>
+  <body class="bg-background text-foreground">
+    <BackgroundEffects />
+    <Header currentPath={Astro.url.pathname} />
+
+    <section class="relative overflow-hidden py-24 lg:py-32">
+      <div class="absolute top-0 right-0 -z-10 size-[800px] translate-x-1/3 -translate-y-1/3 rounded-full bg-gradient-to-b from-primary/15 to-transparent blur-3xl" />
+      <div class="absolute bottom-0 left-0 -z-10 size-[500px] -translate-x-1/3 translate-y-1/3 rounded-full bg-gradient-to-t from-primary/8 to-transparent blur-3xl" />
+      <div class="absolute inset-0 -z-20 bg-[radial-gradient(ellipse_at_top,color-mix(in_oklch,var(--primary)_5%,transparent),transparent_70%)]" />
+      <div class="container">
+        <div class="grid gap-16 lg:grid-cols-2 items-center">
+          <div class="slide-up">
+            <span class="inline-flex h-7 items-center rounded-full border border-primary/20 bg-primary/8 px-3.5 text-xs font-medium text-primary mb-8">Free tools &mdash; no signup, no API calls</span>
+            <h1 class="text-4xl lg:text-5xl xl:text-6xl font-bold tracking-tight leading-[1.1] mb-5">
+              Find the <span class="gradient-text">best deals</span> on marketing tools & grow your traffic
+            </h1>
+            <p class="text-muted-foreground text-lg leading-relaxed mb-8 max-w-lg">
+              Free SEO analyzer, curated software deals, and actionable marketing resources &mdash; all in one place. No signup, no nonsense.
+            </p>
+            <div class="flex flex-wrap gap-3 mb-12">
+              <a href="/tools" class="btn-primary">View All Tools</a>
+              <a href="/deals" class="btn-secondary">View Deals</a>
+            </div>
+            <div class="flex gap-10">
+              <div><span class="text-2xl font-bold tracking-tight">2.5K+</span><p class="text-xs text-muted-foreground mt-0.5">Repos Analyzed</p></div>
+              <div><span class="text-2xl font-bold tracking-tight">150+</span><p class="text-xs text-muted-foreground mt-0.5">Active Deals</p></div>
+              <div><span class="text-2xl font-bold tracking-tight">Free</span><p class="text-xs text-muted-foreground mt-0.5">Always</p></div>
+            </div>
+          </div>
+          <div class="hidden lg:block slide-up stagger-2">
+            <div class="relative">
+              <div class="absolute -inset-4 bg-gradient-to-b from-primary/10 to-transparent rounded-2xl blur-xl opacity-60" />
+              <div class="relative rounded-2xl border border-border bg-card shadow-xl overflow-hidden">
+                <div class="flex gap-1.5 px-5 py-3.5 bg-muted/30 border-b border-border">
+                  <span class="size-2.5 rounded-full bg-[#ff5f57]" />
+                  <span class="size-2.5 rounded-full bg-[#ffbd2e]" />
+                  <span class="size-2.5 rounded-full bg-[#28c840]" />
+                </div>
+                <div class="p-8">
+                  <div class="flex items-center gap-5 mb-6">
+                    <div class="relative size-20 shrink-0">
+                      <svg viewBox="0 0 80 80" class="size-full -rotate-90">
+                        <circle cx="40" cy="40" r="34" fill="none" stroke="color-mix(in srgb, var(--primary) 15%, transparent)" stroke-width="6" />
+                        <circle cx="40" cy="40" r="34" fill="none" stroke="var(--primary)" stroke-width="6" stroke-dasharray="213.6" stroke-dashoffset="42.7" stroke-linecap="round" class="drop-shadow-[0_0_8px_color-mix(in_srgb,var(--primary)_30%,transparent)]" />
+                      </svg>
+                      <span class="absolute inset-0 flex items-center justify-center text-xl font-bold text-primary">80</span>
+                    </div>
+                    <div><div class="font-semibold">SEO Score</div><div class="text-sm text-muted-foreground">Great shape!</div></div>
+                  </div>
+                  <div class="space-y-3">
+                    <div class="flex items-center gap-3 text-sm"><span class="inline-flex size-5 items-center justify-center rounded-full bg-green-500/20 text-green-500 text-xs font-bold">&#10003;</span> <span class="text-muted-foreground">Description</span></div>
+                    <div class="flex items-center gap-3 text-sm"><span class="inline-flex size-5 items-center justify-center rounded-full bg-green-500/20 text-green-500 text-xs font-bold">&#10003;</span> <span class="text-muted-foreground">Topics</span></div>
+                    <div class="flex items-center gap-3 text-sm"><span class="inline-flex size-5 items-center justify-center rounded-full bg-green-500/20 text-green-500 text-xs font-bold">&#10003;</span> <span class="text-muted-foreground">README</span></div>
+                    <div class="flex items-center gap-3 text-sm"><span class="inline-flex size-5 items-center justify-center rounded-full bg-yellow-500/20 text-yellow-500 text-xs font-bold">!</span> <span class="text-muted-foreground">Keywords</span></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="container py-8">
+      <AllAds zone="infeed" />
+    </div>
+
+    <section class="border-t border-border py-20 section-divider">
+      <div class="container">
+        <div class="text-center mb-12 section-fade-in">
+          <span class="inline-flex h-7 items-center rounded-full border border-primary/20 bg-primary/8 px-3.5 text-xs font-medium text-primary mb-5">Free Tools</span>
+          <h2 class="text-3xl lg:text-4xl font-bold tracking-tight mb-3">Marketing <span class="gradient-text">Tools</span></h2>
+          <p class="text-muted-foreground max-w-md mx-auto">Practical tools that solve real problems. No signup walls, no hidden fees.</p>
+        </div>
+        <div class="grid gap-6 md:grid-cols-3">
+          <a href="/tools" class="rounded-xl border border-border bg-card p-7 card-hover card-spotlight glow-border block group section-fade-in stagger-1">
+            <div class="size-11 rounded-xl bg-primary/10 flex items-center justify-center mb-5 group-hover:bg-primary/15 transition-colors duration-300">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-primary"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+            </div>
+            <h3 class="font-semibold text-lg mb-2">All Free Tools</h3>
+            <p class="text-sm text-muted-foreground mb-5 leading-relaxed">Color converter, password generator, UUID generator, word counter, JSON formatter, and more — all free, all client-side.</p>
+            <span class="text-sm font-medium text-primary group-hover:underline decoration-primary/30 underline-offset-4">Try it now &rarr;</span>
+          </a>
+                    <a href="/tools" class="rounded-xl border border-border bg-card p-7 card-hover card-spotlight glow-border block group section-fade-in stagger-2">
+            <div class="size-11 rounded-xl bg-primary/10 flex items-center justify-center mb-5 group-hover:bg-primary/15 transition-colors duration-300">
+
+          
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-primary"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+            </div>
+            <h3 class="font-semibold text-lg mb-2">Meta Tag Inspector</h3>
+            <p class="text-sm text-muted-foreground mb-5 leading-relaxed">Preview how your site appears on Google, Twitter, and Facebook. Check OG tags, titles, and descriptions.</p>
+            <span class="text-sm font-medium text-primary group-hover:underline decoration-primary/30 underline-offset-4">Coming soon &rarr;</span>
+          </a>
+          <a href="/tools" class="rounded-xl border border-border bg-card p-7 card-hover card-spotlight block group section-fade-in stagger-3">
+            <div class="size-11 rounded-xl bg-primary/10 flex items-center justify-center mb-5 group-hover:bg-primary/15 transition-colors duration-300">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-primary"><path d="M21 12a9 9 0 0 0-9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/><path d="M3 12a9 9 0 0 0 9 9 9.75 9.75 0 0 0 6.74-2.74L21 16"/><path d="M16 16h5v5"/></svg>
+            </div>
+            <h3 class="font-semibold text-lg mb-2">Redirect Checker</h3>
+            <p class="text-sm text-muted-foreground mb-5 leading-relaxed">Trace HTTP redirect chains. Find broken redirects, check HTTPS status, and verify URL paths end-to-end.</p>
+            <span class="text-sm font-medium text-primary group-hover:underline decoration-primary/30 underline-offset-4">Coming soon &rarr;</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="border-t border-border py-20 section-divider">
+      <div class="container">
+        <div class="text-center mb-12 section-fade-in">
+          <span class="inline-flex h-7 items-center rounded-full border border-primary/20 bg-primary/8 px-3.5 text-xs font-medium text-primary mb-5">Deals</span>
+          <h2 class="text-3xl lg:text-4xl font-bold tracking-tight mb-3">Hot <span class="gradient-text">Deals</span></h2>
+          <p class="text-muted-foreground max-w-md mx-auto">Curated software & tool deals to save you money</p>
+        </div>
+        <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          <a href="/deals" class="rounded-xl border border-border bg-card p-6 card-hover card-spotlight block group relative section-fade-in stagger-1">
+            <span class="absolute top-3.5 right-3.5 inline-flex h-5 items-center rounded-full bg-primary/15 text-primary px-2.5 text-[10px] font-semibold uppercase tracking-wider">Popular</span>
+            <h3 class="font-semibold mb-2 pr-16">Premium SEO Suite</h3>
+            <p class="text-sm text-muted-foreground mb-4 leading-relaxed">Advanced SEO analysis & tracking tools</p>
+            <span class="inline-flex h-6 items-center rounded-full bg-green-500/15 text-green-500 px-2.5 text-[10px] font-semibold">75% OFF</span>
+          </a>
+          <a href="/deals" class="rounded-xl border border-border bg-card p-6 card-hover card-spotlight block group relative section-fade-in stagger-2">
+            <span class="absolute top-3.5 right-3.5 inline-flex h-5 items-center rounded-full bg-red-500/15 text-red-500 px-2.5 text-[10px] font-semibold uppercase tracking-wider">Hot</span>
+            <h3 class="font-semibold mb-2 pr-16">Traffic Generator Pro</h3>
+            <p class="text-sm text-muted-foreground mb-4 leading-relaxed">Drive targeted traffic with proven strategies</p>
+            <span class="inline-flex h-6 items-center rounded-full bg-yellow-500/15 text-yellow-500 px-2.5 text-[10px] font-semibold">60% OFF</span>
+          </a>
+          <a href="/deals" class="rounded-xl border border-border bg-card p-6 card-hover card-spotlight block group relative section-fade-in stagger-3">
+            <span class="absolute top-3.5 right-3.5 inline-flex h-5 items-center rounded-full bg-green-500/15 text-green-500 px-2.5 text-[10px] font-semibold uppercase tracking-wider">New</span>
+            <h3 class="font-semibold mb-2 pr-16">Content Marketing Kit</h3>
+            <p class="text-sm text-muted-foreground mb-4 leading-relaxed">Create content that ranks and converts</p>
+            <span class="inline-flex h-6 items-center rounded-full bg-green-500/15 text-green-500 px-2.5 text-[10px] font-semibold">50% OFF</span>
+          </a>
+          <a href="/deals" class="rounded-xl border border-border bg-card p-6 card-hover card-spotlight block group relative section-fade-in stagger-4">
+            <span class="absolute top-3.5 right-3.5 inline-flex h-5 items-center rounded-full bg-yellow-500/15 text-yellow-500 px-2.5 text-[10px] font-semibold uppercase tracking-wider">Sale</span>
+            <h3 class="font-semibold mb-2 pr-16">Dev Tool Bundle</h3>
+            <p class="text-sm text-muted-foreground mb-4 leading-relaxed">Essential developer tools at a discount</p>
+            <span class="inline-flex h-6 items-center rounded-full bg-primary/15 text-primary px-2.5 text-[10px] font-semibold">80% OFF</span>
+          </a>
+        </div>
+        <div class="text-center mt-10">
+          <a href="/deals" class="btn-secondary">View All Deals &rarr;</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="border-t border-border py-20 section-divider">
+      <div class="container">
+        <div class="grid gap-8 md:grid-cols-3">
+          <div class="text-center p-8 section-fade-in stagger-1">
+            <div class="text-4xl font-bold text-primary mb-3 tracking-tight">100%</div>
+            <h3 class="font-semibold mb-1.5">Free to Use</h3>
+            <p class="text-sm text-muted-foreground leading-relaxed max-w-xs mx-auto">No credit card, no signup, no hidden trials. Just tools that work.</p>
+          </div>
+          <div class="text-center p-8 section-fade-in stagger-2">
+            <div class="text-4xl font-bold text-primary mb-3 tracking-tight">No Data</div>
+            <h3 class="font-semibold mb-1.5">Privacy First</h3>
+            <p class="text-sm text-muted-foreground leading-relaxed max-w-xs mx-auto">We don't store your searches or repo data. Everything runs client-side.</p>
+          </div>
+          <div class="text-center p-8 section-fade-in stagger-3">
+            <div class="text-4xl font-bold text-primary mb-3 tracking-tight">Curated</div>
+            <h3 class="font-semibold mb-1.5">Hand-Picked Deals</h3>
+            <p class="text-sm text-muted-foreground leading-relaxed max-w-xs mx-auto">Every deal is vetted. No spam, no expired coupons, no junk.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="border-t border-border py-20 section-divider">
+      <div class="container max-w-lg text-center">
+        <span class="inline-flex h-7 items-center rounded-full border border-primary/20 bg-primary/8 px-3.5 text-xs font-medium text-primary mb-5">Stay Updated</span>
+        <h2 class="text-3xl lg:text-4xl font-bold tracking-tight mb-3">Get <span class="gradient-text">New Tools</span> First</h2>
+        <p class="text-muted-foreground mb-8 max-w-sm mx-auto">Be the first to know when we ship new tools and drop fresh deals. No spam, ever.</p>
+        <form class="flex gap-2 max-w-md mx-auto" action="#" method="POST">
+          <input type="email" placeholder="you@example.com" required class="flex h-11 w-full rounded-xl border border-input bg-background px-4 py-2 text-sm text-foreground ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring transition-all duration-200" />
+          <button type="submit" class="btn-primary h-11 shrink-0">Subscribe</button>
+        </form>
+        <p class="text-xs text-muted-foreground mt-3">No spam. Unsubscribe anytime.</p>
+      </div>
+    </section>
+
+    <section class="pb-20">
+      <div class="container">
+        <div class="relative rounded-2xl border border-border bg-card p-12 lg:p-16 text-center overflow-hidden card-gradient-glow card-spotlight">
+          <div class="absolute top-0 right-0 -z-10 size-[400px] translate-x-1/4 -translate-y-1/4 rounded-full bg-gradient-to-b from-primary/10 to-transparent blur-3xl" />
+          <div class="relative">
+            <h2 class="text-3xl lg:text-4xl font-bold tracking-tight mb-3">Ready to grow your <span class="gradient-text">online presence</span>?</h2>
+            <p class="text-muted-foreground mb-8 max-w-sm mx-auto">Start with a free SEO analysis. No account required &mdash; just paste a repo URL and go.</p>
+            <a href="/tools" class="btn-primary text-base h-12 px-8">Explore All Tools</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <Footer />
+    <SpotlightScript />
+  </body>
+</html>

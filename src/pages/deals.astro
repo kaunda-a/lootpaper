@@ -1,0 +1,114 @@
+---
+import "../styles/global.css";
+import { ClientRouter } from "astro:transitions";
+import Header from "../components/layout/Header.astro";
+import Footer from "../components/layout/Footer.astro";
+import BackgroundEffects from "../components/layout/BackgroundEffects.astro";
+import ThemeInit from "../components/ui/ThemeInit.astro";
+import AllAds from "../components/ads/AllAds.astro";
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Best Marketing Tool Deals — Lootpaper</title>
+    <meta name="description" content="Curated deals on marketing software, SEO tools, and developer resources. Save up to 80% on premium tools." />
+    <meta property="og:title" content="Best Marketing Tool Deals — Lootpaper" />
+    <meta property="og:description" content="Save up to 80% on curated marketing software deals." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://lootpaper.com/deals" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <AllAds zone="popunder" />
+    <ThemeInit />
+    <ClientRouter />
+  </head>
+  <body class="bg-background text-foreground">
+    <BackgroundEffects />
+    <Header currentPath={Astro.url.pathname} />
+
+    <section class="py-20 text-center">
+      <div class="container">
+        <span class="inline-flex h-7 items-center rounded-full border border-primary/20 bg-primary/8 px-3.5 text-xs font-medium text-primary mb-6">Exclusive</span>
+        <h1 class="text-4xl lg:text-5xl font-bold tracking-tight mb-3">Curated <span class="gradient-text">Deals</span></h1>
+        <p class="text-muted-foreground max-w-lg mx-auto text-lg">Hand-picked discounts on the marketing tools and software we actually recommend. New deals added weekly.</p>
+      </div>
+    </section>
+
+    <section class="pb-20">
+      <div class="container">
+        <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          <div class="rounded-xl border border-border bg-card p-7 relative flex flex-col card-hover glow-border">
+            <span class="absolute top-4 right-4 inline-flex h-5 items-center rounded-full bg-primary/15 text-primary px-2.5 text-[10px] font-semibold uppercase tracking-wider">Popular</span>
+            <h3 class="font-semibold text-lg mb-2 pr-16">Premium SEO Suite</h3>
+            <p class="text-sm text-muted-foreground mb-5 flex-1 leading-relaxed">Complete SEO toolkit with keyword research, backlink analysis, and rank tracking. Save big on annual plan.</p>
+            <div class="flex items-center gap-2.5 mb-5">
+              <span class="text-sm text-muted-foreground line-through">$499/yr</span>
+              <span class="text-base font-bold text-green-500">$124/yr</span>
+              <span class="inline-flex h-5 items-center rounded-full bg-green-500/15 text-green-500 px-2.5 text-[10px] font-semibold">75% OFF</span>
+            </div>
+            <a href="#" class="btn-primary w-full text-xs h-9">Get Deal</a>
+          </div>
+          <div class="rounded-xl border border-border bg-card p-7 relative flex flex-col card-hover glow-border">
+            <span class="absolute top-4 right-4 inline-flex h-5 items-center rounded-full bg-red-500/15 text-red-500 px-2.5 text-[10px] font-semibold uppercase tracking-wider">Hot</span>
+            <h3 class="font-semibold text-lg mb-2 pr-16">Traffic Generator Pro</h3>
+            <p class="text-sm text-muted-foreground mb-5 flex-1 leading-relaxed">Proven system to drive targeted traffic to your website. Includes content strategy and outreach templates.</p>
+            <div class="flex items-center gap-2.5 mb-5">
+              <span class="text-sm text-muted-foreground line-through">$297/yr</span>
+              <span class="text-base font-bold text-green-500">$118/yr</span>
+              <span class="inline-flex h-5 items-center rounded-full bg-yellow-500/15 text-yellow-500 px-2.5 text-[10px] font-semibold">60% OFF</span>
+            </div>
+            <a href="#" class="btn-primary w-full text-xs h-9">Get Deal</a>
+          </div>
+          <div class="rounded-xl border border-border bg-card p-7 relative flex flex-col card-hover glow-border">
+            <span class="absolute top-4 right-4 inline-flex h-5 items-center rounded-full bg-green-500/15 text-green-500 px-2.5 text-[10px] font-semibold uppercase tracking-wider">New</span>
+            <h3 class="font-semibold text-lg mb-2 pr-16">Content Marketing Kit</h3>
+            <p class="text-sm text-muted-foreground mb-5 flex-1 leading-relaxed">Create content that ranks. Includes AI writing assistant, editorial calendar, and analytics dashboard.</p>
+            <div class="flex items-center gap-2.5 mb-5">
+              <span class="text-sm text-muted-foreground line-through">$199/yr</span>
+              <span class="text-base font-bold text-green-500">$99/yr</span>
+              <span class="inline-flex h-5 items-center rounded-full bg-green-500/15 text-green-500 px-2.5 text-[10px] font-semibold">50% OFF</span>
+            </div>
+            <a href="#" class="btn-primary w-full text-xs h-9">Get Deal</a>
+          </div>
+          <div class="rounded-xl border border-border bg-card p-7 relative flex flex-col card-hover glow-border">
+            <span class="absolute top-4 right-4 inline-flex h-5 items-center rounded-full bg-yellow-500/15 text-yellow-500 px-2.5 text-[10px] font-semibold uppercase tracking-wider">Sale</span>
+            <h3 class="font-semibold text-lg mb-2 pr-16">Dev Tool Bundle</h3>
+            <p class="text-sm text-muted-foreground mb-5 flex-1 leading-relaxed">Essential developer tools bundled at a steep discount. Includes monitoring, analytics, and deployment tools.</p>
+            <div class="flex items-center gap-2.5 mb-5">
+              <span class="text-sm text-muted-foreground line-through">$899/yr</span>
+              <span class="text-base font-bold text-green-500">$179/yr</span>
+              <span class="inline-flex h-5 items-center rounded-full bg-primary/15 text-primary px-2.5 text-[10px] font-semibold">80% OFF</span>
+            </div>
+            <a href="#" class="btn-primary w-full text-xs h-9">Get Deal</a>
+          </div>
+          <div class="rounded-xl border border-border bg-card p-7 relative flex flex-col card-hover glow-border">
+            <span class="absolute top-4 right-4 inline-flex h-5 items-center rounded-full bg-[#8b5cf6]/15 text-[#8b5cf6] px-2.5 text-[10px] font-semibold uppercase tracking-wider">Exclusive</span>
+            <h3 class="font-semibold text-lg mb-2 pr-16">Email Marketing Platform</h3>
+            <p class="text-sm text-muted-foreground mb-5 flex-1 leading-relaxed">Build and nurture your email list with powerful automation, templates, and A/B testing.</p>
+            <div class="flex items-center gap-2.5 mb-5">
+              <span class="text-sm text-muted-foreground line-through">$349/yr</span>
+              <span class="text-base font-bold text-green-500">$139/yr</span>
+              <span class="inline-flex h-5 items-center rounded-full bg-[#8b5cf6]/15 text-[#8b5cf6] px-2.5 text-[10px] font-semibold">60% OFF</span>
+            </div>
+            <a href="#" class="btn-primary w-full text-xs h-9">Get Deal</a>
+          </div>
+          <div class="rounded-xl border border-border bg-card p-7 relative flex flex-col card-hover glow-border">
+            <span class="absolute top-4 right-4 inline-flex h-5 items-center rounded-full bg-red-500/15 text-red-500 px-2.5 text-[10px] font-semibold uppercase tracking-wider">Hot</span>
+            <h3 class="font-semibold text-lg mb-2 pr-16">Social Media Scheduler</h3>
+            <p class="text-sm text-muted-foreground mb-5 flex-1 leading-relaxed">Schedule, manage, and analyze your social media presence across all major platforms.</p>
+            <div class="flex items-center gap-2.5 mb-5">
+              <span class="text-sm text-muted-foreground line-through">$239/yr</span>
+              <span class="text-base font-bold text-green-500">$95/yr</span>
+              <span class="inline-flex h-5 items-center rounded-full bg-red-500/15 text-red-500 px-2.5 text-[10px] font-semibold">60% OFF</span>
+            </div>
+            <a href="#" class="btn-primary w-full text-xs h-9">Get Deal</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <Footer />
+  </body>
+</html>

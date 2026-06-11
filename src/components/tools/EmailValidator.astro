@@ -1,0 +1,122 @@
+<div class="w-full max-w-lg mx-auto">
+  <div class="rounded-xl border border-border bg-card p-7">
+    <div class="flex gap-3 mb-5">
+      <input type="email" id="email-input" placeholder="user@example.com" class="flex h-11 w-full rounded-xl border border-input bg-background px-4 py-2 text-sm text-foreground ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring transition-all duration-200" />
+      <button id="validate-btn" class="btn-primary h-11 shrink-0 px-5">Validate</button>
+    </div>
+    <div id="result" class="hidden p-5 rounded-lg border" role="alert">
+      <div class="flex items-center gap-3 mb-2">
+        <span id="status-icon" class="text-lg"></span>
+        <span id="status-text" class="text-sm font-semibold"></span>
+      </div>
+      <div id="details" class="space-y-1.5 text-xs text-muted-foreground"></div>
+    </div>
+    <div id="error" class="hidden p-3 rounded-lg border border-red-500/30 bg-red-500/5 text-sm text-red-500"></div>
+  </div>
+</div>
+
+<script>
+  const input = document.getElementById("email-input");
+  const btn = document.getElementById("validate-btn");
+  const result = document.getElementById("result");
+  const error = document.getElementById("error");
+
+  // Common disposable email domains (abbreviated list)
+  const disposable = new Set([
+    "mailinator.com","guerrillamail.com","10minutemail.com","tempmail.com","throwaway.email",
+    "yopmail.com","sharklasers.com","spam4.me","trashmail.com","mailnator.com",
+    "temp-mail.org","dispostable.com","mailexpire.com","getnada.com","maildrop.cc",
+    "tempr.email","emailfake.com","mohmal.com","tempinbox.com","luxusmail.org",
+    "fakemailgenerator.com","mailmetrash.com","thankyou2010.com","trash2009.com",
+    "mt2009.com","trashymail.com","tyldd.com","uggsrock.com","wegwerfmail.de",
+    "wh4f.org","whyspam.me","willhackforfood.biz","winemaven.info","wronghead.com",
+    "wuzup.net","xagloo.com","xemaps.com","xents.com","xmaily.com","xoxy.net",
+    "yep.it","yogamaven.com","yopmail.fr","yopmail.net","ypmail.webarnak.com.eu.org",
+    "yuurok.com","zehnminutenmail.de","zippymail.info","zoaxe.com","zoemail.org",
+    "protonmail.com","protonmail.ch","pm.me",
+  ]);
+
+  function validateEmail(email) {
+    const checks = [];
+    let status = "valid";
+
+    // Format check
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      return { status: "invalid", checks: [{ label: "Format", pass: false, detail: "Doesn't match standard email format" }] };
+    }
+    checks.push({ label: "Format", pass: true, detail: "Valid email format" });
+
+    // Length checks
+    const [local, domain] = email.split("@");
+    if (local.length > 64) {
+      checks.push({ label: "Local part length", pass: false, detail: "Exceeds 64 characters" });
+      status = "invalid";
+    } else {
+      checks.push({ label: "Local part length", pass: true, detail: `${local.length} characters` });
+    }
+
+    if (domain.length > 255) {
+      checks.push({ label: "Domain length", pass: false, detail: "Exceeds 255 characters" });
+      status = "invalid";
+    } else {
+      checks.push({ label: "Domain length", pass: true, detail: `${domain.length} characters` });
+    }
+
+    // Disposable check
+    const domainLower = domain.toLowerCase();
+    if (disposable.has(domainLower)) {
+      checks.push({ label: "Disposable", pass: false, detail: "Known disposable/temporary email domain" });
+      if (status === "valid") status = "risky";
+    } else {
+      checks.push({ label: "Disposable", pass: true, detail: "Not a known disposable domain" });
+    }
+
+    // Has TLD
+    const parts = domain.split(".");
+    if (parts.length < 2 || parts[parts.length-1].length < 2) {
+      checks.push({ label: "TLD", pass: false, detail: "Missing or invalid top-level domain" });
+      status = "invalid";
+    } else {
+      checks.push({ label: "TLD", pass: true, detail: `.${parts[parts.length-1]}` });
+    }
+
+    // MX record hint
+    const hasSubdomain = parts.length > 2;
+    checks.push({ label: "Subdomain", pass: !hasSubdomain, detail: hasSubdomain ? "Has subdomain (unusual for personal email)" : "Standard domain" });
+
+    return { status, checks };
+  }
+
+  function validate() {
+    const email = input.value.trim();
+    if (!email) { showError("Enter an email address."); return; }
+    error.classList.add("hidden");
+    result.classList.add("hidden");
+
+    const { status, checks } = validateEmail(email);
+
+    const iconMap = { valid: "✅", risky: "⚠️", invalid: "❌" };
+    const colorMap = { valid: "border-green-500/30 bg-green-500/5", risky: "border-yellow-500/30 bg-yellow-500/5", invalid: "border-red-500/30 bg-red-500/5" };
+    const textMap = { valid: "valid text-green-500", risky: "risky text-yellow-500", invalid: "invalid text-red-500" };
+
+    result.className = `hidden p-5 rounded-lg border ${colorMap[status]}`;
+    document.getElementById("status-icon").textContent = iconMap[status];
+    document.getElementById("status-text").textContent = `Email address is ${status}`;
+    document.getElementById("status-text").className = `text-sm font-semibold text-${status === "valid" ? "green" : status === "risky" ? "yellow" : "red"}-500`;
+    document.getElementById("details").innerHTML = checks.map(c =>
+      `<div class="flex items-center gap-2"><span>${c.pass ? "✓" : "✗"}</span><span class="${c.pass ? 'text-green-500' : 'text-red-500'}">${c.label}:</span> ${c.detail}</div>`
+    ).join("");
+
+    result.classList.remove("hidden");
+  }
+
+  function showError(msg) {
+    error.textContent = msg;
+    error.classList.remove("hidden");
+    result.classList.add("hidden");
+  }
+
+  btn.addEventListener("click", validate);
+  input.addEventListener("keydown", (e) => { if (e.key === "Enter") validate(); });
+</script>

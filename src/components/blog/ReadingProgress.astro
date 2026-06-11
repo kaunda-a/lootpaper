@@ -1,0 +1,18 @@
+<div id="reading-progress" class="fixed top-0 left-0 right-0 z-[60] h-0.5 bg-transparent pointer-events-none">
+  <div class="h-full w-0 transition-[width] duration-100 ease-out rounded-full" style="background: linear-gradient(90deg, #D76D77, #ffca7b)" />
+</div>
+
+<script>
+  const bar = document.querySelector("#reading-progress > div");
+
+  function updateProgress() {
+    if (!bar) return;
+    const scrollTop = window.scrollY;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+    bar.style.width = `${Math.min(progress, 100)}%`;
+  }
+
+  window.addEventListener("scroll", updateProgress, { passive: true });
+  updateProgress();
+</script>

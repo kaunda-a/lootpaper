@@ -1,0 +1,114 @@
+---
+
+---
+
+<div id="bg-effects" aria-hidden="true" class="fixed inset-0 -z-10 overflow-hidden pointer-events-none">
+  <div id="bg-mesh" class="absolute inset-0 opacity-30 dark:opacity-20" />
+  <div id="bg-orbs" class="absolute inset-0">
+    <div class="orb orb-1" />
+    <div class="orb orb-2" />
+    <div class="orb orb-3" />
+    <div class="orb orb-4" />
+  </div>
+  <div id="bg-noise" class="absolute inset-0 opacity-[0.035] dark:opacity-[0.06] mix-blend-soft-light" />
+  <div id="bg-grid" class="absolute inset-0 opacity-[0.04] dark:opacity-[0.03]" />
+  <div id="bg-vignette" class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_50%,var(--background)_100%)] opacity-60" />
+</div>
+
+<style>
+  #bg-mesh {
+    background:
+      radial-gradient(ellipse 80% 60% at 10% 20%, color-mix(in srgb, var(--primary) 12%, transparent) 0%, transparent 100%),
+      radial-gradient(ellipse 50% 70% at 90% 80%, color-mix(in srgb, var(--primary) 8%, transparent) 0%, transparent 100%),
+      radial-gradient(ellipse 60% 50% at 50% 50%, color-mix(in srgb, var(--accent-warm) 6%, transparent) 0%, transparent 100%);
+  }
+
+  .orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    will-change: transform;
+  }
+
+  .orb-1 {
+    width: 600px;
+    height: 600px;
+    background: color-mix(in srgb, var(--primary) 10%, transparent);
+    top: -10%;
+    right: -5%;
+    animation: orbFloat1 25s ease-in-out infinite;
+  }
+
+  .orb-2 {
+    width: 500px;
+    height: 500px;
+    background: color-mix(in srgb, var(--accent-warm) 8%, transparent);
+    bottom: -8%;
+    left: -5%;
+    animation: orbFloat2 30s ease-in-out infinite;
+  }
+
+  .orb-3 {
+    width: 400px;
+    height: 400px;
+    background: color-mix(in srgb, var(--primary) 6%, transparent);
+    top: 40%;
+    left: 50%;
+    animation: orbFloat3 20s ease-in-out infinite;
+  }
+
+  .orb-4 {
+    width: 350px;
+    height: 350px;
+    background: color-mix(in srgb, #7bc0ff 5%, transparent);
+    top: 60%;
+    right: 10%;
+    animation: orbFloat4 35s ease-in-out infinite;
+  }
+
+  @keyframes orbFloat1 {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    25% { transform: translate(-60px, 40px) scale(1.05); }
+    50% { transform: translate(-30px, -60px) scale(0.95); }
+    75% { transform: translate(40px, 20px) scale(1.02); }
+  }
+
+  @keyframes orbFloat2 {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    25% { transform: translate(50px, -40px) scale(0.95); }
+    50% { transform: translate(30px, 50px) scale(1.05); }
+    75% { transform: translate(-40px, -20px) scale(0.98); }
+  }
+
+  @keyframes orbFloat3 {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    33% { transform: translate(40px, 30px) scale(1.03); }
+    66% { transform: translate(-30px, -40px) scale(0.97); }
+  }
+
+  @keyframes orbFloat4 {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    25% { transform: translate(-30px, -50px) scale(1.04); }
+    50% { transform: translate(40px, 20px) scale(0.96); }
+    75% { transform: translate(-20px, 40px) scale(1.02); }
+  }
+
+  #bg-noise {
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-repeat: repeat;
+    background-size: 256px 256px;
+  }
+
+  #bg-grid {
+    background-image:
+      radial-gradient(circle at 1px 1px, currentColor 1px, transparent 0);
+    background-size: 48px 48px;
+    color: var(--foreground);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .orb {
+      animation: none !important;
+    }
+  }
+</style>

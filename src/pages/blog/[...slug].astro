@@ -1,0 +1,201 @@
+---
+import "../../styles/global.css";
+import { ClientRouter } from "astro:transitions";
+import Header from "../../components/layout/Header.astro";
+import Footer from "../../components/layout/Footer.astro";
+import BackgroundEffects from "../../components/layout/BackgroundEffects.astro";
+import BlogThumbnail from "../../components/blog/BlogThumbnail.astro";
+import TableOfContents from "../../components/blog/TableOfContents.astro";
+import ReadingProgress from "../../components/blog/ReadingProgress.astro";
+import { getCollection, render } from "astro:content";
+import ThemeInit from "../../components/ui/ThemeInit.astro";
+
+interface Heading {
+  level: number;
+  text: string;
+  id: string;
+}
+
+function extractHeadings(body: string): Heading[] {
+  return body
+    .split("\n")
+    .filter((line) => /^#{2,4}\s/.test(line))
+    .map((line) => {
+      const match = line.match(/^(#{2,4})\s+(.+)/);
+      if (!match) return null;
+      const level = match[1].length;
+      const text = match[2].replace(/[`*_~]/g, "").trim();
+      const id = text
+        .toLowerCase()
+        .replace(/[^a-z0-9]+/g, "-")
+        .replace(/^-|-$/g, "");
+      return { level, text, id };
+    })
+    .filter((h): h is Heading => h !== null);
+}
+
+function readingTime(body: string): string {
+  const words = body.split(/\s+/).length;
+  const minutes = Math.max(1, Math.round(words / 200));
+  return `${minutes} min read`;
+}
+
+export async function getStaticPaths() {
+  const posts = await getCollection("blog");
+  return posts.map((post) => ({
+    params: { slug: post.id },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const allPosts = await getCollection("blog");
+const related = allPosts
+  .filter((p) => p.id !== post.id)
+  .filter((p) => p.data.tags.some((t) => post.data.tags.includes(t)))
+  .slice(0, 2);
+
+const { Content } = await render(post);
+const headings = extractHeadings(post.body || "");
+const rt = readingTime(post.body || "");
+const url = `https://lootpaper.com/blog/${post.id}`;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{post.data.title} — Lootpaper Blog</title>
+    <meta name="description" content={post.data.description} />
+    <meta property="og:title" content={post.data.title} />
+    <meta property="og:description" content={post.data.description} />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content={url} />
+    <meta property="article:published_time" content={post.data.pubDate.toISOString()} />
+    <meta property="article:author" content={post.data.author} />
+    {post.data.tags.map((tag) => (
+      <meta property="article:tag" content={tag} />
+    ))}
+    {post.data.image && <meta property="og:image" content={post.data.image} />}
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={post.data.title} />
+    <meta name="twitter:description" content={post.data.description} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    
+    <ThemeInit />
+    <ClientRouter />
+  </head>
+  <body class="bg-background text-foreground">
+    <ReadingProgress />
+    <BackgroundEffects />
+    <Header currentPath="/blog" />
+
+    <main class="py-12 lg:py-16">
+      <div class="container">
+        <a href="/blog" class="inline-flex h-8 items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors duration-200 mb-8">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+          Back to blog
+        </a>
+
+        <div class="grid gap-10 lg:grid-cols-[1fr_220px] lg:gap-12">
+          <article>
+            <header class="mb-10">
+              <BlogThumbnail title={post.data.title} size="lg" class="w-full rounded-xl mb-8" />
+              <div class="flex flex-wrap items-center gap-2.5 mb-4">
+                <time class="text-sm text-muted-foreground">{post.data.pubDate.toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" })}</time>
+                <span class="text-muted-foreground text-sm">&middot;</span>
+                <span class="text-sm text-muted-foreground">{rt}</span>
+                <span class="text-muted-foreground text-sm">&middot;</span>
+                <span class="text-sm text-muted-foreground">{post.data.author}</span>
+              </div>
+              <div class="flex flex-wrap gap-1.5 mb-4">
+                {post.data.tags.map((tag) => (
+                  <span class="inline-flex h-5 items-center rounded-full bg-primary/10 text-primary px-2.5 text-[10px] font-medium">{tag}</span>
+                ))}
+              </div>
+              <h1 class="text-3xl lg:text-4xl font-bold tracking-tight mb-3">{post.data.title}</h1>
+              <p class="text-muted-foreground text-lg leading-relaxed">{post.data.description}</p>
+            </header>
+
+            {headings.length > 0 && (
+              <div class="lg:hidden mb-10">
+                <TableOfContents headings={headings} />
+              </div>
+            )}
+
+            <div class="prose prose-invert max-w-none
+              prose-headings:scroll-mt-28 prose-headings:font-bold prose-headings:tracking-tight
+              prose-h2:text-2xl prose-h2:mt-12 prose-h2:mb-4 prose-h2:pb-2 prose-h2:border-b prose-h2:border-border
+              prose-h3:text-xl prose-h3:mt-8 prose-h3:mb-3
+              prose-p:text-[15px] prose-p:leading-[1.75] prose-p:text-muted-foreground prose-p:mb-6
+              prose-a:text-primary prose-a:no-underline hover:prose-a:underline prose-a:decoration-primary/30 prose-a:underline-offset-4
+              prose-strong:text-foreground prose-strong:font-semibold
+              prose-code:text-sm prose-code:bg-muted prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded-md prose-code:font-normal prose-code:before:content-none prose-code:after:content-none
+              prose-pre:bg-muted prose-pre:border prose-pre:border-border prose-pre:rounded-xl prose-pre:p-4
+              prose-li:text-muted-foreground prose-li:leading-relaxed prose-li:my-1
+              prose-ul:pl-0 prose-ol:pl-0
+              prose-blockquote:border-l-2 prose-blockquote:border-l-primary prose-blockquote:text-muted-foreground prose-blockquote:pl-5 prose-blockquote:not-italic prose-blockquote:text-[15px]
+              prose-table:text-sm prose-th:text-foreground prose-th:font-medium prose-th:bg-muted/50 prose-th:p-3 prose-td:text-muted-foreground prose-td:p-3
+              prose-hr:border-border prose-hr:my-12
+              prose-img:rounded-xl prose-img:border prose-img:border-border
+            ">
+              <Content />
+            </div>
+
+            <div class="mt-12 pt-8 border-t border-border">
+              <div class="flex items-center justify-between gap-4">
+                <div class="flex items-center gap-3">
+                  <div class="size-10 rounded-full bg-primary/15 flex items-center justify-center text-sm font-semibold text-primary shrink-0">LT</div>
+                  <div>
+                    <div class="text-sm font-medium">{post.data.author}</div>
+                    <div class="text-xs text-muted-foreground">Lootpaper Team</div>
+                  </div>
+                </div>
+                <div class="flex items-center gap-2">
+                  <span class="text-xs text-muted-foreground">Share:</span>
+                  <a href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(post.data.title)}&url=${encodeURIComponent(url)}`} target="_blank" rel="noopener" class="inline-flex size-8 items-center justify-center rounded-lg border border-border text-muted-foreground hover:text-foreground hover:border-primary/30 transition-all duration-200" aria-label="Share on Twitter">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"/></svg>
+                  </a>
+                  <a href={`https://www.linkedin.com/shareArticle?mini=true&url=${encodeURIComponent(url)}&title=${encodeURIComponent(post.data.title)}`} target="_blank" rel="noopener" class="inline-flex size-8 items-center justify-center rounded-lg border border-border text-muted-foreground hover:text-foreground hover:border-primary/30 transition-all duration-200" aria-label="Share on LinkedIn">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          {headings.length > 0 && (
+            <aside class="hidden lg:block">
+              <div class="rounded-xl border border-border bg-card p-5">
+                <TableOfContents headings={headings} />
+              </div>
+            </aside>
+          )}
+        </div>
+
+        {related.length > 0 && (
+          <section class="mt-16 pt-12 border-t border-border">
+            <h2 class="text-sm font-semibold text-muted-foreground tracking-widest uppercase mb-6">Related articles</h2>
+            <div class="grid gap-6 sm:grid-cols-2">
+              {related.map((p) => (
+                <a
+                  href={`/blog/${p.id}`}
+                  class="group block rounded-xl border border-border bg-card overflow-hidden card-hover glow-border"
+                >
+                  <BlogThumbnail title={p.data.title} size="sm" class="w-full" />
+                  <div class="p-5">
+                    <h3 class="font-semibold mb-1 group-hover:text-primary transition-colors duration-200">{p.data.title}</h3>
+                    <p class="text-xs text-muted-foreground">{p.data.pubDate.toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" })}</p>
+                  </div>
+                </a>
+              ))}
+            </div>
+          </section>
+        )}
+      </div>
+    </main>
+
+    <Footer />
+  </body>
+</html>

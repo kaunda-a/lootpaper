@@ -1,0 +1,65 @@
+---
+import "../styles/global.css";
+import { ClientRouter } from "astro:transitions";
+import Header from "../components/layout/Header.astro";
+import Footer from "../components/layout/Footer.astro";
+import BackgroundEffects from "../components/layout/BackgroundEffects.astro";
+import ThemeInit from "../components/ui/ThemeInit.astro";
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Contact — Lootpaper</title>
+    <meta name="description" content="Get in touch with the Lootpaper team. Suggest a tool, submit a deal, or report an issue." />
+    <meta property="og:title" content="Contact Lootpaper" />
+    <meta property="og:description" content="Suggest a tool, submit a deal, or report an issue." />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    
+    <ThemeInit />
+    <ClientRouter />
+  </head>
+  <body class="bg-background text-foreground">
+    <BackgroundEffects />
+    <Header currentPath={Astro.url.pathname} />
+
+    <section class="py-20">
+      <div class="container max-w-lg">
+        <div class="text-center mb-12">
+          <span class="inline-flex h-7 items-center rounded-full border border-primary/20 bg-primary/8 px-3.5 text-xs font-medium text-primary mb-6">Contact</span>
+          <h1 class="text-4xl lg:text-5xl font-bold tracking-tight mb-3">Get in <span class="gradient-text">Touch</span></h1>
+          <p class="text-muted-foreground">Have a tool suggestion, a deal to submit, or found a bug? We'd love to hear from you.</p>
+        </div>
+
+        <form action="https://formspree.io/f/your-form-id" method="POST" class="space-y-5">
+          <div>
+            <label for="name" class="block text-sm font-medium mb-1.5 text-foreground">Name</label>
+            <input type="text" id="name" name="name" required class="flex h-11 w-full rounded-xl border border-input bg-background px-4 py-2 text-sm text-foreground ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:border-ring transition-all duration-200" placeholder="Your name" />
+          </div>
+          <div>
+            <label for="email" class="block text-sm font-medium mb-1.5 text-foreground">Email</label>
+            <input type="email" id="email" name="email" required class="flex h-11 w-full rounded-xl border border-input bg-background px-4 py-2 text-sm text-foreground ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:border-ring transition-all duration-200" placeholder="you@example.com" />
+          </div>
+          <div>
+            <label for="subject" class="block text-sm font-medium mb-1.5 text-foreground">Subject</label>
+            <select id="subject" name="subject" class="flex h-11 w-full rounded-xl border border-input bg-background px-4 py-2 text-sm text-foreground ring-offset-background focus:outline-none focus:ring-2 focus:ring-ring focus:border-ring transition-all duration-200">
+              <option value="suggestion">Tool Suggestion</option>
+              <option value="deal">Submit a Deal</option>
+              <option value="bug">Bug Report</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+          <div>
+            <label for="message" class="block text-sm font-medium mb-1.5 text-foreground">Message</label>
+            <textarea id="message" name="message" required rows="5" class="flex w-full rounded-xl border border-input bg-background px-4 py-2.5 text-sm text-foreground ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:border-ring transition-all duration-200 resize-y" placeholder="Tell us what's on your mind..."></textarea>
+          </div>
+          <button type="submit" class="btn-primary w-full h-11 text-sm">Send Message</button>
+        </form>
+      </div>
+    </section>
+
+    <Footer />
+  </body>
+</html>

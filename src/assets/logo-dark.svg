@@ -1,0 +1,11 @@
+<svg width="127" height="32" viewBox="0 0 127 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect x="0" y="4" width="24" height="24" rx="6" fill="url(#lg)" />
+  <path d="M6 20V10h3.5q2.1 0 3.3 1.05t1.2 2.95q0 1.9-1.2 2.95Q11.6 18 9.5 18H8.5v2zm2.5-3.5h1q.95 0 1.475-.475.525-.475.525-1.475t-.525-1.475Q10.45 10.5 9.5 10.5H8.5z" fill="#151515" />
+  <text x="30" y="22" font-family="Inter, -apple-system, BlinkMacSystemFont, sans-serif" font-weight="700" font-size="17" fill="#151515">Lootpaper</text>
+  <defs>
+    <linearGradient id="lg" x1="0" y1="4" x2="24" y2="28" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#D76D77"/>
+      <stop offset="1" stop-color="#ffca7b"/>
+    </linearGradient>
+  </defs>
+</svg>

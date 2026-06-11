@@ -1,0 +1,52 @@
+<div class="w-full max-w-lg mx-auto">
+  <div class="rounded-xl border border-border bg-card p-7">
+    <div class="flex gap-3 mb-4">
+      <select id="case-select" class="flex h-11 flex-1 rounded-xl border border-input bg-background px-3 py-2 text-sm text-foreground ring-offset-background focus:outline-none focus:ring-2 focus:ring-ring transition-all duration-200">
+        <option value="upper">UPPER CASE</option>
+        <option value="lower">lower case</option>
+        <option value="title">Title Case</option>
+        <option value="camel">camelCase</option>
+        <option value="pascal">PascalCase</option>
+        <option value="snake">snake_case</option>
+        <option value="kebab">kebab-case</option>
+        <option value="constant">CONSTANT_CASE</option>
+        <option value="dot">dot.case</option>
+        <option value="reverse">Reverse Case</option>
+        <option value="alternating">aLtErNaTiNg</option>
+      </select>
+    </div>
+    <textarea id="input-text" rows="4" placeholder="Enter text..." class="flex w-full rounded-xl border border-input bg-background px-4 py-3 text-sm text-foreground font-mono ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring transition-all duration-200 resize-y mb-3"></textarea>
+    <button id="convert-btn" class="btn-primary h-10 px-5 text-sm mb-3">Convert</button>
+    <textarea id="output-text" rows="4" readonly class="flex w-full rounded-xl border border-input bg-background px-4 py-3 text-sm text-foreground font-mono ring-offset-background focus:outline-none transition-all duration-200 resize-y"></textarea>
+  </div>
+</div>
+
+<script>
+  const sel = document.getElementById("case-select");
+  const input = document.getElementById("input-text");
+  const output = document.getElementById("output-text");
+  const btn = document.getElementById("convert-btn");
+
+  function toWords(s) { return s.match(/[A-Za-z][a-z]*|[0-9]+/g) || [s]; }
+
+  function convert() {
+    const t = input.value;
+    const words = toWords(t).map(w => w.toLowerCase());
+    switch (sel.value) {
+      case "upper": output.value = t.toUpperCase(); break;
+      case "lower": output.value = t.toLowerCase(); break;
+      case "title": output.value = t.replace(/\w\S*/g, w => w[0].toUpperCase() + w.slice(1).toLowerCase()); break;
+      case "camel": output.value = words.map((w,i) => i ? w[0].toUpperCase()+w.slice(1) : w).join(""); break;
+      case "pascal": output.value = words.map(w => w[0].toUpperCase()+w.slice(1)).join(""); break;
+      case "snake": output.value = words.join("_"); break;
+      case "kebab": output.value = words.join("-"); break;
+      case "constant": output.value = words.join("_").toUpperCase(); break;
+      case "dot": output.value = words.join("."); break;
+      case "reverse": output.value = t.split("").reverse().join(""); break;
+      case "alternating": output.value = t.split("").map((c,i) => i%2 ? c.toLowerCase() : c.toUpperCase()).join(""); break;
+    }
+  }
+
+  btn.addEventListener("click", convert);
+  sel.addEventListener("change", convert);
+</script>

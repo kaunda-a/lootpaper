@@ -1,0 +1,45 @@
+<div class="w-full max-w-lg mx-auto">
+  <div class="rounded-xl border border-border bg-card p-7">
+    <textarea id="text-input" rows="6" placeholder="Paste your text here..." class="flex w-full rounded-xl border border-input bg-background px-4 py-3 text-sm text-foreground ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring transition-all duration-200 resize-y mb-4"></textarea>
+    <div id="stats" class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+      <div class="p-3 rounded-lg bg-muted/30 border border-border text-center"><div id="words" class="text-2xl font-bold gradient-text">0</div><div class="text-xs text-muted-foreground mt-1">Words</div></div>
+      <div class="p-3 rounded-lg bg-muted/30 border border-border text-center"><div id="chars" class="text-2xl font-bold gradient-text">0</div><div class="text-xs text-muted-foreground mt-1">Characters</div></div>
+      <div class="p-3 rounded-lg bg-muted/30 border border-border text-center"><div id="sentences" class="text-2xl font-bold gradient-text">0</div><div class="text-xs text-muted-foreground mt-1">Sentences</div></div>
+      <div class="p-3 rounded-lg bg-muted/30 border border-border text-center"><div id="read-time" class="text-2xl font-bold gradient-text">0</div><div class="text-xs text-muted-foreground mt-1">Min read</div></div>
+      <div class="p-3 rounded-lg bg-muted/30 border border-border text-center"><div id="paragraphs" class="text-2xl font-bold gradient-text">0</div><div class="text-xs text-muted-foreground mt-1">Paragraphs</div></div>
+      <div class="p-3 rounded-lg bg-muted/30 border border-border text-center"><div id="lines" class="text-2xl font-bold gradient-text">0</div><div class="text-xs text-muted-foreground mt-1">Lines</div></div>
+      <div class="p-3 rounded-lg bg-muted/30 border border-border text-center"><div id="avg-wl" class="text-2xl font-bold gradient-text">0</div><div class="text-xs text-muted-foreground mt-1">Avg word len</div></div>
+      <div class="p-3 rounded-lg bg-muted/30 border border-border text-center"><div id="density" class="text-2xl font-bold gradient-text">0</div><div class="text-xs text-muted-foreground mt-1">Reading ease</div></div>
+    </div>
+  </div>
+</div>
+
+<script>
+  const textarea = document.getElementById("text-input");
+  function update() {
+    const t = textarea.value;
+    const words = t.trim() ? t.trim().split(/\s+/).length : 0;
+    const chars = t.length;
+    const sentences = t.split(/[.!?]+/).filter(s => s.trim()).length;
+    const paragraphs = t.split(/\n\s*\n/).filter(p => p.trim()).length;
+    const lines = t.split("\n").length;
+    const readTime = Math.max(1, Math.round(words / 200));
+    const avgWl = words ? Math.round(chars / words * 10) / 10 : 0;
+
+    // Flesch-Kincaid approximation
+    const syllables = words ? t.toLowerCase().replace(/[^a-z\s]/g,"").split(/\s+/).reduce((s,w) => s + Math.max(1, w.match(/[aeiouy]+/gi)?.length || 1), 0) : 0;
+    const fk = words && sentences ? Math.round(206.835 - 1.015 * (words / sentences) - 84.6 * (syllables / words)) : 0;
+    const ease = Math.max(0, Math.min(100, fk));
+
+    document.getElementById("words").textContent = words.toLocaleString();
+    document.getElementById("chars").textContent = chars.toLocaleString();
+    document.getElementById("sentences").textContent = sentences;
+    document.getElementById("read-time").textContent = readTime;
+    document.getElementById("paragraphs").textContent = paragraphs;
+    document.getElementById("lines").textContent = lines;
+    document.getElementById("avg-wl").textContent = avgWl;
+    document.getElementById("density").textContent = ease;
+  }
+  textarea.addEventListener("input", update);
+  update();
+</script>

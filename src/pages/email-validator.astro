@@ -1,0 +1,40 @@
+---
+import "../styles/global.css";
+import { ClientRouter } from "astro:transitions";
+import Header from "../components/layout/Header.astro";
+import Footer from "../components/layout/Footer.astro";
+import BackgroundEffects from "../components/layout/BackgroundEffects.astro";
+import EmailValidator from "../components/tools/EmailValidator.astro";
+import ThemeInit from "../components/ui/ThemeInit.astro";
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Email Validator — Lootpaper</title>
+    <meta name="description" content="Validate any email address — checks format, length, disposable domains, and TLD. Free, no signup." />
+    <meta property="og:title" content="Email Validator — Lootpaper" />
+    <meta property="og:description" content="Free email address validator. Check format, disposable domains, and more." />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    
+    <ThemeInit />
+    <ClientRouter />
+  </head>
+  <body class="bg-background text-foreground">
+    <BackgroundEffects />
+    <Header currentPath={Astro.url.pathname} />
+    <main class="py-20">
+      <div class="container">
+        <div class="text-center mb-10">
+          <span class="inline-flex h-7 items-center rounded-full border border-primary/20 bg-primary/8 px-3.5 text-xs font-medium text-primary mb-4">Tool</span>
+          <h1 class="text-3xl lg:text-4xl font-bold tracking-tight mb-3">Email <span class="gradient-text">Validator</span></h1>
+          <p class="text-muted-foreground max-w-lg mx-auto">Check email format, detect disposable domains, and validate structure — all client-side, no data sent anywhere.</p>
+        </div>
+        <EmailValidator />
+      </div>
+    </main>
+    <Footer />
+  </body>
+</html>
