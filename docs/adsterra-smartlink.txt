@@ -1,4 +1,0 @@
-"zone name","placement name","placement id","code (smart link)"
-direct-link-1206157,DirectLink_1,20427183,https://temptedrecognise.com/j3q531ssj?key=a4a9df915850497aebe2c0329c5ff47b
-direct-link-1206157,Smartlink_2,29595705,https://temptedrecognise.com/d8hxd972?key=a1194eae770f8daf5e209cb4fd0b9d7e
-direct-link-1206157,Smartlink_3,29595829,https://temptedrecognise.com/x7qbjqq4?key=d500d12e66809ae6f6c8e2254204ae6d

@@ -5,6 +5,7 @@ dist/
 
 # dependencies
 node_modules/
+bun.lock
 
 # logs
 npm-debug.log*
@@ -24,3 +25,6 @@ e2e-results.json
 # macOS-specific files
 .DS_Store
 issues
+
+# local docs/notes (ad codes, tokens, locker refs)
+docs/

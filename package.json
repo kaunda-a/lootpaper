@@ -5,6 +5,8 @@
   "license": "MIT",
   "type": "module",
   "scripts": {
+    "generate:pdfs": "node scripts/generate-pdfs.js",
+    "prebuild": "npm run generate:pdfs",
     "dev": "astro dev",
     "start": "astro dev",
     "build": "astro build",

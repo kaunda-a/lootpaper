@@ -14,9 +14,10 @@ import AllAds from "../components/ads/AllAds.astro";
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Free Downloads — Lootpaper</title>
-    <meta name="description" content="Free SEO checklists, marketing tool directories, and growth guides. Complete one quick offer to unlock each download." />
+    <meta name="description" content="Premium SEO checklists, marketing tool directories, and growth guides. Complete one quick offer to unlock each download." />
     <meta property="og:title" content="Free Downloads — Lootpaper" />
-    <meta property="og:description" content="Free SEO checklists, marketing resources, and growth guides." />
+    <meta property="og:description" content="Premium SEO checklists, marketing directories, and growth guides." />
+    <meta property="og:image" content="https://images.unsplash.com/photo-1677442136019-21780ecad995?w=1200&q=80" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <ThemeInit />
     <ClientRouter />
@@ -25,88 +26,152 @@ import AllAds from "../components/ads/AllAds.astro";
     <BackgroundEffects />
     <Header currentPath={Astro.url.pathname} />
 
-    <section class="py-20 text-center">
-      <div class="container">
-        <span class="inline-flex h-7 items-center rounded-full border border-primary/20 bg-primary/8 px-3.5 text-xs font-medium text-primary mb-6">Free Downloads</span>
-        <h1 class="text-4xl lg:text-5xl font-bold tracking-tight mb-3">Premium <span class="gradient-text">Resources</span></h1>
-        <p class="text-muted-foreground max-w-lg mx-auto text-lg">Handcrafted PDFs to help you rank higher, save time, and grow faster. Complete one quick offer to unlock each download.</p>
+    <!-- Hero -->
+    <section class="relative overflow-hidden">
+      <div class="absolute inset-0 -z-10">
+        <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?w=1600&q=80" alt="" class="size-full object-cover opacity-[0.04]" loading="lazy" />
+        <div class="absolute inset-0 bg-gradient-to-b from-background via-background/95 to-background" />
+      </div>
+      <div class="container py-24 lg:py-32 text-center relative">
+        <div class="mx-auto max-w-3xl">
+          <span class="inline-flex h-7 items-center rounded-full border border-primary/20 bg-primary/8 px-3.5 text-xs font-medium text-primary mb-6">Premium Resources</span>
+          <h1 class="text-4xl lg:text-5xl xl:text-6xl font-bold tracking-tight leading-[1.1] mb-5">
+            Free <span class="gradient-text">Resources</span> for Makers
+          </h1>
+          <p class="text-muted-foreground text-lg max-w-xl mx-auto leading-relaxed mb-10">
+            Handcrafted PDFs to help you rank higher, save time, and grow faster. Complete one quick offer to unlock each download.
+          </p>
+
+          <!-- Trust bar -->
+          <div class="inline-flex flex-wrap items-center justify-center gap-x-8 gap-y-2 text-sm text-muted-foreground">
+            <span class="inline-flex items-center gap-1.5">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-green-500"><polyline points="20 6 9 17 4 12"/></svg>
+              Updated for 2026
+            </span>
+            <span class="inline-flex items-center gap-1.5">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-green-500"><polyline points="20 6 9 17 4 12"/></svg>
+              Free to download
+            </span>
+            <span class="inline-flex items-center gap-1.5">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-green-500"><polyline points="20 6 9 17 4 12"/></svg>
+              No email required
+            </span>
+            <span class="inline-flex items-center gap-1.5">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-green-500"><polyline points="20 6 9 17 4 12"/></svg>
+              Original content
+            </span>
+          </div>
+        </div>
       </div>
     </section>
 
+    <!-- Downloads Grid -->
     <section class="pb-20">
-      <div class="container max-w-4xl">
-        <div class="grid gap-8">
+      <div class="container max-w-5xl">
+        <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
 
-          <!-- Card 1 - SEO Checklist -->
-          <div class="rounded-xl border border-border bg-card p-8 card-hover glow-border">
-            <div class="flex flex-col sm:flex-row gap-6 items-start">
-              <div class="size-20 shrink-0 rounded-xl bg-gradient-to-br from-primary/20 to-primary/5 flex items-center justify-center">
-                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="text-primary"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/><line x1="16" x2="8" y1="13" y2="13"/><line x1="16" x2="8" y1="17" y2="17"/></svg>
+          <!-- Card 1 -->
+          <div class="group relative rounded-2xl border border-border bg-card overflow-hidden card-hover glow-border flex flex-col">
+            <div class="relative h-44 overflow-hidden bg-gradient-to-br from-primary/10 via-primary/5 to-background">
+              <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,color-mix(in_oklch,var(--primary)_10%,transparent),transparent_70%)]" />
+              <div class="absolute bottom-4 left-5">
+                <span class="inline-flex h-6 items-center rounded-full bg-background/80 backdrop-blur-sm border border-border/50 px-3 text-[10px] font-semibold tracking-wider uppercase">PDF &middot; 5 KB</span>
               </div>
-              <div class="flex-1 min-w-0">
-                <div class="flex items-center gap-3 mb-2">
-                  <h2 class="text-xl font-bold tracking-tight">SEO Quick Checklist 2026</h2>
-                  <span class="inline-flex h-5 items-center rounded-full bg-green-500/15 text-green-500 px-2.5 text-[10px] font-semibold">PDF</span>
-                </div>
-                <p class="text-sm text-muted-foreground mb-1">30 actionable points covering technical SEO, on-page, content, AI search optimization, and off-page. Print it, check them off.</p>
-                <p class="text-xs text-muted-foreground/60 mb-4">3 KB &middot; 1 page &middot; Updated 2026</p>
-                <a href="https://quartzfiles.com/1899872" target="_blank" rel="nofollow sponsored" class="btn-primary text-sm h-10 px-5 inline-flex items-center gap-2">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg>
-                  Unlock & Download
-                </a>
+              <div class="absolute top-5 right-5">
+                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="text-primary/30"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/><line x1="16" x2="8" y1="13" y2="13"/><line x1="16" x2="8" y1="17" y2="17"/><line x1="10" x2="8" y1="9" y2="9"/></svg>
               </div>
+            </div>
+            <div class="p-6 flex flex-col flex-1">
+              <h2 class="text-lg font-bold tracking-tight mb-1.5">SEO Quick Checklist</h2>
+              <p class="text-xs text-muted-foreground/60 mb-1">2026 Edition</p>
+              <p class="text-sm text-muted-foreground leading-relaxed mb-5 flex-1">30 actionable points covering technical SEO, on-page, content, AI search optimization, and off-page. Print it, check them off.</p>
+              <a href="https://quartzfiles.com/1899872" target="_blank" rel="nofollow sponsored" class="btn-primary text-sm h-10 w-full inline-flex items-center justify-center gap-2">
+                <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg>
+                Unlock & Download
+              </a>
             </div>
           </div>
 
-          <!-- Card 2 - Marketing Tools -->
-          <div class="rounded-xl border border-border bg-card p-8 card-hover glow-border">
-            <div class="flex flex-col sm:flex-row gap-6 items-start">
-              <div class="size-20 shrink-0 rounded-xl bg-gradient-to-br from-primary/20 to-primary/5 flex items-center justify-center">
-                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="text-primary"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg>
+          <!-- Card 2 -->
+          <div class="group relative rounded-2xl border border-border bg-card overflow-hidden card-hover glow-border flex flex-col">
+            <div class="relative h-44 overflow-hidden bg-gradient-to-br from-green-500/8 via-green-500/[0.02] to-background">
+              <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top,color-mix(in_oklch,#22c55e_8%,transparent),transparent_70%)]" />
+              <div class="absolute bottom-4 left-5">
+                <span class="inline-flex h-6 items-center rounded-full bg-background/80 backdrop-blur-sm border border-border/50 px-3 text-[10px] font-semibold tracking-wider uppercase">PDF &middot; 8 KB</span>
               </div>
-              <div class="flex-1 min-w-0">
-                <div class="flex items-center gap-3 mb-2">
-                  <h2 class="text-xl font-bold tracking-tight">100 Free Marketing Tools</h2>
-                  <span class="inline-flex h-5 items-center rounded-full bg-green-500/15 text-green-500 px-2.5 text-[10px] font-semibold">PDF</span>
-                </div>
-                <p class="text-sm text-muted-foreground mb-1">Curated directory of free tools across SEO, content, design, email, analytics, AI, and more. Every tool has a real free tier.</p>
-                <p class="text-xs text-muted-foreground/60 mb-4">4 KB &middot; 2 pages &middot; Updated 2026</p>
-                <a href="https://tundrafile.com/1899875" target="_blank" rel="nofollow sponsored" class="btn-primary text-sm h-10 px-5 inline-flex items-center gap-2">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg>
-                  Unlock & Download
-                </a>
+              <div class="absolute top-5 right-5">
+                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="text-green-500/30"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg>
               </div>
+            </div>
+            <div class="p-6 flex flex-col flex-1">
+              <h2 class="text-lg font-bold tracking-tight mb-1.5">100 Free Marketing Tools</h2>
+              <p class="text-xs text-muted-foreground/60 mb-1">2026 Curated Directory</p>
+              <p class="text-sm text-muted-foreground leading-relaxed mb-5 flex-1">Curated directory of free tools across SEO, content, design, email, analytics, AI, developer tools, and productivity.</p>
+              <a href="https://tundrafile.com/1899875" target="_blank" rel="nofollow sponsored" class="btn-primary text-sm h-10 w-full inline-flex items-center justify-center gap-2">
+                <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg>
+                Unlock & Download
+              </a>
             </div>
           </div>
 
-          <!-- Card 3 - Growth Guide -->
-          <div class="rounded-xl border border-border bg-card p-8 card-hover glow-border">
-            <div class="flex flex-col sm:flex-row gap-6 items-start">
-              <div class="size-20 shrink-0 rounded-xl bg-gradient-to-br from-primary/20 to-primary/5 flex items-center justify-center">
-                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="text-primary"><line x1="12" x2="12" y1="20" y2="10"/><line x1="18" x2="18" y1="20" y2="4"/><line x1="6" x2="6" y1="20" y2="16"/></svg>
+          <!-- Card 3 -->
+          <div class="group relative rounded-2xl border border-border bg-card overflow-hidden card-hover glow-border flex flex-col">
+            <div class="relative h-44 overflow-hidden bg-gradient-to-br from-violet-500/8 via-violet-500/[0.02] to-background">
+              <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_left,color-mix(in_oklch,#a855f7_8%,transparent),transparent_70%)]" />
+              <div class="absolute bottom-4 left-5">
+                <span class="inline-flex h-6 items-center rounded-full bg-background/80 backdrop-blur-sm border border-border/50 px-3 text-[10px] font-semibold tracking-wider uppercase">PDF &middot; 3 KB</span>
               </div>
-              <div class="flex-1 min-w-0">
-                <div class="flex items-center gap-3 mb-2">
-                  <h2 class="text-xl font-bold tracking-tight">Indie Hacker Growth Guide</h2>
-                  <span class="inline-flex h-5 items-center rounded-full bg-green-500/15 text-green-500 px-2.5 text-[10px] font-semibold">PDF</span>
-                </div>
-                <p class="text-sm text-muted-foreground mb-1">5 actionable growth strategies for makers and indie hackers. SEO, building in public, content repurposing, communities, and email.</p>
-                <p class="text-xs text-muted-foreground/60 mb-4">2 KB &middot; 2 pages &middot; Updated 2026</p>
-                <a href="https://filestrue.com/1899879" target="_blank" rel="nofollow sponsored" class="btn-primary text-sm h-10 px-5 inline-flex items-center gap-2">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg>
-                  Unlock & Download
-                </a>
+              <div class="absolute top-5 right-5">
+                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="text-violet-500/30"><line x1="12" x2="12" y1="20" y2="10"/><line x1="18" x2="18" y1="20" y2="4"/><line x1="6" x2="6" y1="20" y2="16"/></svg>
               </div>
+            </div>
+            <div class="p-6 flex flex-col flex-1">
+              <h2 class="text-lg font-bold tracking-tight mb-1.5">Indie Hacker Growth Guide</h2>
+              <p class="text-xs text-muted-foreground/60 mb-1">5 Zero-Budget Strategies</p>
+              <p class="text-sm text-muted-foreground leading-relaxed mb-5 flex-1">5 proven growth strategies: SEO, building in public, content repurposing, community-led growth, and email marketing.</p>
+              <a href="https://filestrue.com/1899879" target="_blank" rel="nofollow sponsored" class="btn-primary text-sm h-10 w-full inline-flex items-center justify-center gap-2">
+                <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg>
+                Unlock & Download
+              </a>
             </div>
           </div>
 
         </div>
 
-        <div class="mt-12 text-center">
-          <div class="inline-flex items-center gap-2 rounded-full border border-border bg-muted/50 px-5 py-2.5 text-sm text-muted-foreground">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-primary"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-            Your privacy is protected. No spam, no tracking after unlock.
+        <!-- Badge row -->
+        <div class="mt-14 text-center">
+          <div class="inline-flex flex-wrap items-center justify-center gap-3 rounded-2xl border border-border bg-card/50 px-8 py-5">
+            <span class="inline-flex items-center gap-1.5 text-sm text-muted-foreground">
+              <svg class="size-4 text-primary" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              No tracking after unlock
+            </span>
+            <span class="h-4 w-px bg-border" />
+            <span class="inline-flex items-center gap-1.5 text-sm text-muted-foreground">
+              <svg class="size-4 text-primary" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              Instant access
+            </span>
+            <span class="h-4 w-px bg-border" />
+            <span class="inline-flex items-center gap-1.5 text-sm text-muted-foreground">
+              <svg class="size-4 text-primary" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+              Original content
+            </span>
+            <span class="h-4 w-px bg-border" />
+            <span class="inline-flex items-center gap-1.5 text-sm text-muted-foreground">
+              <svg class="size-4 text-primary" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+              New resources added monthly
+            </span>
           </div>
+        </div>
+
+        <!-- CTA -->
+        <div class="mt-14 relative overflow-hidden rounded-2xl border border-border bg-gradient-to-br from-primary/[0.04] to-transparent p-10 lg:p-14 text-center card-hover glow-border">
+          <div class="absolute top-0 right-0 -z-10 size-[400px] translate-x-1/4 -translate-y-1/4 rounded-full bg-gradient-to-b from-primary/8 to-transparent blur-3xl" />
+          <h2 class="text-2xl lg:text-3xl font-bold tracking-tight mb-3">Want us to create <span class="gradient-text">something specific</span>?</h2>
+          <p class="text-muted-foreground max-w-md mx-auto mb-6">Suggest a resource and we'll build it. SEO playbooks, tool comparisons, templates — you name it.</p>
+          <a href="/contact" class="btn-primary text-sm h-10 px-6 inline-flex items-center gap-2">
+            <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+            Suggest a Resource
+          </a>
         </div>
       </div>
     </section>
